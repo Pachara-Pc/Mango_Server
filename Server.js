@@ -3,8 +3,8 @@ const bodyParser = require("body-parser")
 const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
-const {findMax,findMin,CheckTemp,etCal,rainUpdate} = require('./Control/Calculate')
-const {maxTemp,minTemp} = require('./Control/Calculate')
+const {findMax,findMin,CheckTemp,etInterval_Push,showETinterval,rainUpdate,showIrrigation} = require('./Control/Calculate')
+const {checkWater,checkStatus,checkvalveNumber,openValve,closeValve} = require("./Control/Controlvalve");
 let count = 0 ;
 
 // Variable sensor from Arduino
@@ -24,19 +24,48 @@ app.get("/sendData/:value",(req,res)=>{
         findMax(parseInt(dataArray[0]))         /// [0] Temperature
         findMin(parseInt(dataArray[0]))         /// [0] Temperature
         rainUpdate(parseFloat(dataArray[1]))    /// [1] Rain
-        
+
         console.log(`Temp = ${ dataArray} `);
         res.send(`Temp = ${req.params.value}`);
 })
 
+app.get("/Openvalue",(req,res)=>{
+
+        if(showIrrigation()>checkWater()){
+                openValve();
+                console.log(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+                res.send(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+        }
+        else if(showIrrigation()<checkWater()){
+                closeValve()
+                console.log(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+                res.send(`IN CLOSE => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()-1}`);
+        }
+        else{
+                console.log(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+                res.send(`IN NOTING => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+
+        }
+        
+})
+
 app.get("/Check",(req,res)=>{
-        console.log(CheckTemp()); 
+        //console.log(showETinterval()); 
         //console.log(`MaxTemp = ${maxTemp} MinTemp =${minTemp}`);
         res.send(CheckTemp());
 })
 
-// setInterval(function(){CheckTemp()},3000);
-//setInterval(()=>{console.log(etCal());},1000);
+
+setInterval(()=>{  
+
+        console.log("PUSH ! "); etInterval_Push(); 
+        console.log(`ET = ${showETinterval()}`); 
+        console.log(`IR =   ${showIrrigation()}`);
+
+},5000);
+
+
+
 app.get("/sendSum/",(req,res)=>{
         if(count % 3 === 0){
                 console.log(`count = ${count}`);
