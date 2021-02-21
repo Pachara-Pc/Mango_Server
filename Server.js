@@ -4,7 +4,7 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const {findMax,findMin,CheckTemp,etInterval_Push,showETinterval,rainUpdate,showIrrigation} = require('./Control/Calculate')
-const {checkWater,checkStatus,checkvalveNumber,openValve,closeValve} = require("./Control/Controlvalve");
+const {checkWater,checkStatus,checkvalveNumber,openValve,closeValve,resetTurnpump} = require("./Control/Controlvalve");
 let count = 0 ;
 
 // Variable sensor from Arduino
@@ -38,11 +38,12 @@ app.get("/Openvalue",(req,res)=>{
         }
         else if(showIrrigation()<checkWater()){
                 closeValve()
-                console.log(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+                console.log(`IN CLOSE => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()-1}`);
                 res.send(`IN CLOSE => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()-1}`);
+                resetTurnpump()
         }
         else{
-                console.log(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+                console.log(`IN NOTING=> IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
                 res.send(`IN NOTING => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
 
         }
