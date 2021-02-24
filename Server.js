@@ -3,12 +3,9 @@ const bodyParser = require("body-parser")
 const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
-const {findMax,findMin,CheckTemp,etInterval_Push,showETinterval,rainUpdate,showIrrigation} = require('./Control/Calculate')
-const {checkWater,checkStatus,checkvalveNumber,openValve,closeValve,resetTurnpump} = require("./Control/Controlvalve");
-let count = 0 ;
-
+const Calculate = require("./Control/Calculate");
+const e = require("express");
 // Variable sensor from Arduino
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -20,64 +17,73 @@ app.get("/", (req,res) =>{
 app.get("/sendData/:value",(req,res)=>{
         const allData = req.params.value;
         const dataArray = allData.split(",");
-        
-        findMax(parseInt(dataArray[0]))         /// [0] Temperature
-        findMin(parseInt(dataArray[0]))         /// [0] Temperature
-        rainUpdate(parseFloat(dataArray[1]))    /// [1] Rain
 
-        console.log(`Temp = ${ dataArray} `);
+        Calculate.findMax_Min(parseInt(dataArray[0]))
+        
+        console.log(`Temp = ${ dataArray [0]} `);
         res.send(`Temp = ${req.params.value}`);
 })
 
-app.get("/Openvalue",(req,res)=>{
 
-        if(showIrrigation()>checkWater()){
-                openValve();
-                console.log(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
-                res.send(`IN OPEN => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
-        }
-        else if(showIrrigation()<checkWater()){
-                closeValve()
-                console.log(`IN CLOSE => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()-1}`);
-                res.send(`IN CLOSE => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()-1}`);
-                resetTurnpump()
-        }
-        else{
-                console.log(`IN NOTING=> IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
-                res.send(`IN NOTING => IR = ${showIrrigation()} Water = ${checkWater()} Status = ${checkStatus()}, valveNumber =${checkvalveNumber()}`);
+app.get("/ControlVavle",(req,res)=>{
 
+        if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
+                res.send(`On_valve : ${Calculate.getcountpump()  } status 1`)
         }
         
-})
-
-app.get("/Check",(req,res)=>{
-        //console.log(showETinterval()); 
-        //console.log(`MaxTemp = ${maxTemp} MinTemp =${minTemp}`);
-        res.send(CheckTemp());
-})
-
-
-setInterval(()=>{  
-
-        console.log("PUSH ! "); etInterval_Push(); 
-        console.log(`ET = ${showETinterval()}`); 
-        console.log(`IR =   ${showIrrigation()}`);
-
-},5000);
-
-
-
-app.get("/sendSum/",(req,res)=>{
-        if(count % 3 === 0){
-                console.log(`count = ${count}`);
-                res.send(`1,3`);
+        if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() !== true){
+                res.send(`OFF_valve : ${Calculate.getcountpump()} status 0`)
         }
-        else if(count %10 === 0){
-                res.send(`0,3`);
-        }
-        else{   res.send(`0`);
-                console.log("count mod not equal 3");}
+        
+
+
 })
+
+setInterval(()=>{ 
+        const Time = new Date();
+
+        
+        if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
+                console.log(`On_valve : ${Calculate.getcountpump()} status 1 IR: ${Calculate.getIrrigation()}`);
+
+                Calculate.minusIrrigation()
+        }
+
+        if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() === true){
+
+                console.log(`OFF_valve : ${Calculate.getcountpump()} status 0 IR: ${Calculate.getIrrigation()}`);
+                Calculate.setvalvestatus(false)
+                Calculate.setIrrigation(0);
+                Calculate.setSumrainInterval(0);
+                Calculate.setdayCountinValve(Calculate.getcountpump())
+                Calculate.pluscountpump(1);
+
+                if(Calculate.getcountpump() === Calculate.getpump()){
+                        Calculate.setcountpump(0)
+                        Calculate.setcountday(0)
+                        Calculate.setcount(0)
+                        Calculate.setRound_status(true)
+                }
+
+
+        }
+
+                if(Time.getSeconds() % 5 == 0){
+
+                        if(Calculate.getRound_status() == false){
+                                Calculate.Calculate_round_1()
+                                console.log("Calculate.Calculate_round_1()");
+                        }
+                        else{
+                                Calculate.Calculate_round_2()
+                                console.log("Calculate.Calculate_round_2()");
+                        }
+                        
+                        console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+                }
+
+               
+},1000)
 
 app.listen(PORT,'0.0.0.0',()=>{
             console.log(`Server is running ${PORT}`);
