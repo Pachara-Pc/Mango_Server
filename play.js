@@ -1,37 +1,19 @@
-var water =0;
-var Ir = 0;
+var A = 10;
+
+const Run = setInterval(()=>{
 
 
-function Open(){
-    
-    water+=2
-
+    console.log("get = "+ getA());
+    setA(2)
+if(A ===0){
+    clearInterval(Run)
 }
 
-function Close() {
+},1000)
 
-    clearInterval(checkWater)
+function getA(){
+    return A;
 }
-
-
-function Check(){
-    if(water<Ir){
-        Open();
-        console.log(`water in open ${water}`);
-    }
-    else{
-        Close();
-        console.log(`water in close ${water}`);
-    }
+function setA(set){
+    A -= set
 }
-
-
-const checkWater = setInterval(Check,1000);
-
-module.exports ={
-    
-}
-
-
-    
-

@@ -31,8 +31,9 @@ app.get("/ControlVavle",(req,res)=>{
                 res.send(`On_valve : ${Calculate.getcountpump()  } status 1`)
         }
         
+
         if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() !== true){
-                res.send(`OFF_valve : ${Calculate.getcountpump()} status 0`)
+                res.send(`OFF_valve : ${Calculate.getcountpump()-1} status 0`)
         }
         
 
