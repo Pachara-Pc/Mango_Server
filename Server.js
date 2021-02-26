@@ -4,7 +4,8 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
-const e = require("express");
+var checkClose =false;
+
 // Variable sensor from Arduino
 
 app.use(bodyParser.json());
@@ -15,6 +16,7 @@ app.get("/", (req,res) =>{
 })
 
 app.get("/sendData/:value",(req,res)=>{
+
         const allData = req.params.value;
         const dataArray = allData.split(",");
 
@@ -25,51 +27,109 @@ app.get("/sendData/:value",(req,res)=>{
 })
 
 
-app.get("/ControlVavle",(req,res)=>{
+app.get("/ControlVavle/",(req,res)=>{
 
         if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
-                res.send(`On_valve : ${Calculate.getcountpump()  } status 1`)
-        }
-        
+                rememValve = Calculate.getcountpump()+1;
+                res.send(`${rememValve},1`);
+                checkClose = true;
+                        }
 
-        if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() !== true){
-                res.send(`OFF_valve : ${Calculate.getcountpump()-1} status 0`)
-        }
-        
+        else if((Calculate.getIrrigation()<0 && Calculate.getvalvestatus() !== true) || (checkClose == true) ){
+
+                                res.send(`${rememValve},0`);
+
+                                checkClose = false ;
+        //                      reset = true
+                        }
+        else {
+                res.send(`nothing`)
+                        }
+
+
+
 
 
 })
 
 setInterval(()=>{ 
         const Time = new Date();
-
         
-        if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
-                console.log(`On_valve : ${Calculate.getcountpump()} status 1 IR: ${Calculate.getIrrigation()}`);
+        
+        // if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
+               
 
-                Calculate.minusIrrigation()
-        }
+        //         console.log(`On_valve : ${Calculate.getcountpump()} status 1 IR: ${Calculate.getIrrigation()}`);
 
-        if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() === true){
+        //         //Calculate.minusIrrigation()
+        // }
 
-                console.log(`OFF_valve : ${Calculate.getcountpump()} status 0 IR: ${Calculate.getIrrigation()}`);
-                Calculate.setvalvestatus(false)
-                Calculate.setIrrigation(0);
-                Calculate.setSumrainInterval(0);
-                Calculate.setdayCountinValve(Calculate.getcountpump())
-                Calculate.pluscountpump(1);
+        // if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() === true){
 
-                if(Calculate.getcountpump() === Calculate.getpump()){
-                        Calculate.setcountpump(0)
-                        Calculate.setcountday(0)
-                        Calculate.setcount(0)
-                        Calculate.setRound_status(true)
+        //         console.log(`OFF_valve : ${Calculate.getcountpump()} status 0 IR: ${Calculate.getIrrigation()}`);
+        //         Calculate.setvalvestatus(false)
+        //         Calculate.setIrrigation(0);
+        //         Calculate.setSumrainInterval(0);
+        //         Calculate.setdayCountinValve(Calculate.getcountpump())
+        //         Calculate.pluscountpump(1);
+
+        //         if(Calculate.getcountpump() === Calculate.getpump()){
+        //                 Calculate.setcountpump(0)
+        //                 Calculate.setcountday(0)
+        //                 Calculate.setcount(0)
+        //                 Calculate.setRound_status(true)
+        //         }
+        
+
+        // }
+
+        if( Calculate.getIrrigation() != 0 ){
+
+                        if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 2 && Calculate.getvalvestatus()  == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 3 && Calculate.getvalvestatus()  == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 4 && Calculate.getvalvestatus()  == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 5 && Calculate.getvalvestatus() == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 6 && Calculate.getvalvestatus()  == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 7 && Calculate.getvalvestatus()  == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
+
+                }else   if(Calculate.getcountpump() == 8 && Calculate.getvalvestatus()  == true){
+
+                    OnZone(Calculate.getArea(),Calculate.getpumpRate);
                 }
+                else{
+                    console.log("system run");
+                }
+                
+            
+            }else{
+
+                console.log("system run");
+
+            }
 
 
-        }
-
-                if(Time.getSeconds() % 5 == 0){
+                if(Time.getSeconds() % 30 == 0){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
@@ -91,3 +151,55 @@ app.listen(PORT,'0.0.0.0',()=>{
 })
 
 
+function OnZone(Area,pumpRate) {
+        
+        let Ir_new = Calculate.getIrrigation()
+        console.log(`IR_NEW = ${Ir_new}`);
+        Calculate.setvalvestatus(false)
+
+        const Run = setInterval(()=>{
+            
+            Ir_new-=Calculate.getpumpRate();
+    
+    
+            if(Ir_new<=0){
+
+                Calculate.setvalvestatus(true)
+                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+                console.log(`countpump  = ${Calculate.getcountpump()}`);
+
+               
+                
+                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
+                        console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
+                        Calculate.setdayCountinValve(Calculate.getZone()-1)
+                        Calculate.setIrrigation(0)
+                        Calculate.setZone(2)
+                        
+                                           
+                }
+
+                if(Calculate.getZone() === 2 && Calculate.getcountpump() === 8){
+                        console.log(`setdayCountinValve Zone 2 = ${Calculate.getZone()-1}`);
+                        Calculate.setdayCountinValve(Calculate.getZone()-1)
+                        Calculate.setIrrigation(0);
+                        Calculate.setcountpump(0);
+                        Calculate.setZone(1);
+                        Calculate.setcount(0);
+                        Calculate.setRound_status(true);
+                        
+                }
+
+                Calculate.pluscountpump(1);
+                
+                
+                clearInterval(Run)
+            }
+    
+
+            console.log(`On pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+            
+            
+        },500)
+        
+    }
