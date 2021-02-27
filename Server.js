@@ -18,7 +18,7 @@ app.get("/", (req,res) =>{
 
 app.get("/OnMaster", (req,res) =>{
     console.log("Master On ");
-    if(Calculate.getIrrigation() != 0 ){
+    if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
         res.send('O1');   //// O = on
     }else{
         res.send('C0');   //// C = close
