@@ -15,6 +15,11 @@ app.get("/", (req,res) =>{
             res.send('hello server  ')
 })
 
+app.get("/OnMaster", (req,res) =>{
+    console.log("Master On ");
+    res.send('1');
+})
+
 app.get("/sendData/:value",(req,res)=>{
 
         const allData = req.params.value;
