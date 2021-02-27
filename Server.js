@@ -42,9 +42,9 @@ app.get("/sendData/:value",(req,res)=>{
 app.get("/ControlValve/",(req,res)=>{
 
       if((Controlpump.getZone_1()||Controlpump.getZone_2() ) == true ){
-        res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?'0':'1'}`)
+        res.send(`${Calculate.getcountpump()},1}`)
       }else{
-        res.send(`0`)
+        res.send(`${Calculate.getcountpump()},0}`)
       }
 
 
