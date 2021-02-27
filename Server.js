@@ -7,7 +7,7 @@ const Calculate = require("./Control/Calculate");
 const Controlpump = require("./Control/Controlpump");
 var checkClose =false;
 // Variable sensor from Arduino
-
+var confirmRequest = true;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -40,10 +40,11 @@ app.get("/sendData/:value",(req,res)=>{
 
 app.get("/ControlValve/",(req,res)=>{
 
-      if((Controlpump.getZone_1()||Controlpump.getZone_2() ) == true ){
-        res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()}`)
+      if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true && (confirmRequest == true) ){
+        res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
       }else{
         res.send(`${Calculate.getcountpump()},0`)
+        
       }
 
 
@@ -55,9 +56,10 @@ setInterval(()=>{
 
         if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
 
-                        if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true){
+                        if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
+                    
 
                 }else   if(Calculate.getcountpump() == 2 && Calculate.getvalvestatus()  == true){
 
@@ -126,6 +128,7 @@ function OnZone(Area,pumpRate) {
         let Ir_new = Calculate.getIrrigation()
         console.log(`IR_NEW = ${Ir_new}`);
         Calculate.setvalvestatus(false)
+        confirmRequest = false;
 
         const Run = setInterval(()=>{
             
@@ -135,6 +138,7 @@ function OnZone(Area,pumpRate) {
             if(Ir_new<=0){
 
                 Calculate.setvalvestatus(true)
+                confirmRequest = true;
                 console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
                 console.log(`countpump  = ${Calculate.getcountpump()}`);
 
