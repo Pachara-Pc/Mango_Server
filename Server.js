@@ -4,6 +4,7 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
+const Controlpump = require("./Control/Controlpump");
 var checkClose =false;
 var AA = true;
 // Variable sensor from Arduino
@@ -31,7 +32,8 @@ app.get("/sendData/:value",(req,res)=>{
         const dataArray = allData.split(",");
 
         Calculate.findMax_Min(parseInt(dataArray[0]))
-        
+        Controlpump.openZone_1(dataArray[2]);
+        Controlpump.openZone_2(dataArray[3]);
         console.log(`Temp = ${ dataArray} `);
         res.send(`Temp = ${req.params.value}`);
 })
@@ -93,7 +95,7 @@ setInterval(()=>{
 
         // }
 
-        if( Calculate.getIrrigation() != 0 ){
+        if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
 
                         if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true){
 
@@ -139,7 +141,7 @@ setInterval(()=>{
             }
 
 
-                if(Time.getSeconds() % 30 == 0 && Calculate.getIrrigation() == 0){
+                if(Time.getSeconds() % 30 == 0 && Calculate.getIrrigation() === 0){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
