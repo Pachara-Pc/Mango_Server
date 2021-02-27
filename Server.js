@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const Controlpump = require("./Control/Controlpump");
 var checkClose =false;
-var AA = true;
 // Variable sensor from Arduino
 
 app.use(bodyParser.json());
