@@ -38,13 +38,28 @@ app.get("/sendData/:value",(req,res)=>{
 })
 
 
-app.get("/ControlValve/",(req,res)=>{
+app.get("/ControlValve/:value",(req,res)=>{
+        const Value = req.params.value;
+        const status = Value.split(",");
 
-      if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  && confirmRequest == false){
-        res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
+        
+      if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  ){
+
+        if(status[0] === Calculate.getcountpump() && status[2] === Calculate.getvalvestatus()?0:1 ){
+            console.log(`status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[2] = ${status[2]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
+            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
+        }
+        else{
+            console.log(`status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[2] = ${status[2]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
+            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
+        }
+
+        
       }else{
-        res.send(`${Calculate.getcountpump()},0`)
-        confirmRequest = true
+        
+       
+       
+
       }
 
 
