@@ -5,7 +5,7 @@ const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 var checkClose =false;
-
+var AA = true;
 // Variable sensor from Arduino
 
 app.use(bodyParser.json());
@@ -139,7 +139,7 @@ setInterval(()=>{
             }
 
 
-                if(Time.getSeconds() % 30 == 0){
+                if(Time.getSeconds() % 30 == 0 && Calculate.getIrrigation() == 0){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
