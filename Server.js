@@ -41,25 +41,11 @@ app.get("/sendData/:value",(req,res)=>{
 
 app.get("/ControlVavle/",(req,res)=>{
 
-        if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
-                rememValve = Calculate.getcountpump()+1;
-                res.send(`${rememValve},1`);
-                checkClose = true;
-                        }
-
-        else if((Calculate.getIrrigation()<0 && Calculate.getvalvestatus() !== true) || (checkClose == true) ){
-
-                                res.send(`${rememValve},0`);
-
-                                checkClose = false ;
-        //                      reset = true
-                        }
-        else {
-                res.send(`nothing`)
-                        }
-
-
-
+      if((Controlpump.getZone_1()||Controlpump.getZone_2() ) == true ){
+        res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?'0':'1'}`)
+      }else{
+        res.send(`0`)
+      }
 
 
 })
@@ -67,33 +53,6 @@ app.get("/ControlVavle/",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
         
-        
-        // if(Calculate.getIrrigation()!== 0 && Calculate.getvalvestatus() === true){
-               
-
-        //         console.log(`On_valve : ${Calculate.getcountpump()} status 1 IR: ${Calculate.getIrrigation()}`);
-
-        //         //Calculate.minusIrrigation()
-        // }
-
-        // if(Calculate.getIrrigation()<=0 && Calculate.getvalvestatus() === true){
-
-        //         console.log(`OFF_valve : ${Calculate.getcountpump()} status 0 IR: ${Calculate.getIrrigation()}`);
-        //         Calculate.setvalvestatus(false)
-        //         Calculate.setIrrigation(0);
-        //         Calculate.setSumrainInterval(0);
-        //         Calculate.setdayCountinValve(Calculate.getcountpump())
-        //         Calculate.pluscountpump(1);
-
-        //         if(Calculate.getcountpump() === Calculate.getpump()){
-        //                 Calculate.setcountpump(0)
-        //                 Calculate.setcountday(0)
-        //                 Calculate.setcount(0)
-        //                 Calculate.setRound_status(true)
-        //         }
-        
-
-        // }
 
         if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
 
