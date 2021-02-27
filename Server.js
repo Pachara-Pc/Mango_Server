@@ -17,7 +17,12 @@ app.get("/", (req,res) =>{
 
 app.get("/OnMaster", (req,res) =>{
     console.log("Master On ");
-    res.send('1');
+    if(Calculate.getIrrigation() != 0 ){
+        res.send('O1');   //// O = on
+    }else{
+        res.send('C0');   //// C = close
+    }
+    
 })
 
 app.get("/sendData/:value",(req,res)=>{
@@ -27,7 +32,7 @@ app.get("/sendData/:value",(req,res)=>{
 
         Calculate.findMax_Min(parseInt(dataArray[0]))
         
-        console.log(`Temp = ${ dataArray [0]} `);
+        console.log(`Temp = ${ dataArray} `);
         res.send(`Temp = ${req.params.value}`);
 })
 
