@@ -40,11 +40,11 @@ app.get("/sendData/:value",(req,res)=>{
 
 app.get("/ControlValve/",(req,res)=>{
 
-      if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true && (confirmRequest == true) ){
+      if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  && confirmRequest == false){
         res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
       }else{
         res.send(`${Calculate.getcountpump()},0`)
-        
+        confirmRequest = true
       }
 
 
@@ -54,7 +54,7 @@ setInterval(()=>{
         const Time = new Date();
         
 
-        if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
+        if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true) && confirmRequest == true){
 
                         if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true ){
 
