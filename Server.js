@@ -16,8 +16,13 @@ app.get("/", (req,res) =>{
 })
 
 app.get("/OnMaster", (req,res) =>{
-    console.log("Master On ");
-    res.send('1');
+	    console.log("Master On ");
+	    if(Calculate.getIrrigation() != 0 ){
+		            res.send('O1');
+		        }else{
+				        res.send('C0');
+				    }
+	    
 })
 
 app.get("/sendData/:value",(req,res)=>{
