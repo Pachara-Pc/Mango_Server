@@ -43,9 +43,13 @@ app.get("/ControlValve/:value",(req,res)=>{
         const status = Value.split(",");
         console.log(`ControlValve = ${status}`);
        
+        if(status[2] == 0){
+            res.send('yes')
+        }else{
+            res.send('no')
+        }
         
-        
-        res.send('0');
+        //res.send('0');
 
 
 })
