@@ -42,11 +42,11 @@ app.get("/ControlValve/:value",(req,res)=>{
         const Value = req.params.value;
         const status = Value.split(",");
         if(status[0] == Calculate.getcountpump() && status[1] == Calculate.getvalvestatus()?0:1 ){
-            console.log(`Arduino number pump : ${Calculate.getcountpump()}, Arduino pump status ${Calculate.getvalvestatus()?0:1} `);
-            console.log(`Server number pump : ${Calculate.getcountpump()}, Server pump status ${Calculate.getvalvestatus()?0:1} `);
+            console.log(`Arduino number pump : ${status[0] }, Arduino pump status ${status[1] } `);
+            console.log(`Server  number pump : ${Calculate.getcountpump()}, Server pump status ${Calculate.getvalvestatus()?0:1} `);
         }else{
-            console.log(`Arduino number pump : ${Calculate.getcountpump()}, Arduino pump status ${Calculate.getvalvestatus()?0:1} `);
-            console.log(`Server number pump : ${Calculate.getcountpump()}, Server pump status ${Calculate.getvalvestatus()?0:1} `);
+            console.log(`Arduino number pump : ${status[0] }, Arduino pump status ${status[1] } `);
+            console.log(`Server  number pump : ${Calculate.getcountpump()}, Server pump status ${Calculate.getvalvestatus()?0:1} `);
         }
         
         res.send('0');
