@@ -150,14 +150,9 @@ function OnZone(Area,pumpRate) {
                 confirmRequest = false
                 setTimeout(()=>{
 
-                    Calculate.pluscountpump(1);
-                    Calculate.setvalvestatus(false)  
-                    confirmRequest =true;  
-
-
                      if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
                         confirmRequest = false
-                        
+
                         console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
                         Calculate.setIrrigation(0)
@@ -191,7 +186,9 @@ function OnZone(Area,pumpRate) {
                         
                 }
 
-                     
+                Calculate.pluscountpump(1);
+                Calculate.setvalvestatus(false)  
+                confirmRequest =true;  
                     clearInterval(Run) },3000)
 
                 
