@@ -200,7 +200,7 @@ function OnZone(Area,pumpRate) {
                         }
 
 
-                        },3000)
+                        },4000)
 
                         
                         
