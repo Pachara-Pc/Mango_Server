@@ -1,20 +1,7 @@
-var a = 10;
-let i = 0;
-setInterval(()=>{
-   
-    if(i == 5){
-        const A = setInterval(()=>{
-
-            if(i%5 ==0){
-                clearInterval(A)
-                console.log("clear");
-            }
-   
-        },1000);
-    }
-
-    i++;
-
-    console.log(i);
+let x =0
+function a(set){
+    x = x+set
 }
-,1000);
+
+a(-1)
+console.log(x);
