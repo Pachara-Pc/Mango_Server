@@ -1,4 +1,16 @@
-const A = true && true
+var a = 10;
+let i =0;
+const A = setInterval(()=>{
 
-const B = A || false
-console.log(B);
+    
+    if(i== 5){
+        console.log("clear");
+        setTimeout(()=>{
+            clearInterval(A);
+            
+        },3000)
+       
+    }
+    i++;
+    console.log(i);
+},1000)

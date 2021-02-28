@@ -138,7 +138,10 @@ function OnZone(Area,pumpRate) {
     
     
             if(Ir_new<=0){
-                
+                confirmRequest = false
+
+                setTimeout(()=>{confirmRequest =true },3000)
+
                 Calculate.setvalvestatus(false)
                 
                 console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
