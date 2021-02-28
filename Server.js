@@ -155,8 +155,8 @@ function OnZone(Area,pumpRate) {
 
                
                 
-                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
-                    Calculate.pluscountpump(-1);
+                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 5){
+                   
                         console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
                         Calculate.setIrrigation(0)
@@ -177,8 +177,8 @@ function OnZone(Area,pumpRate) {
                 }
 
 
-                if(Calculate.getZone() === 2 && Calculate.getcountpump() === 8 ){
-                    Calculate.pluscountpump(-1);
+                if(Calculate.getZone() === 2 && Calculate.getcountpump() === 9 ){
+                    
                         console.log(`setdayCountinValve Zone 2 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
                         Calculate.setIrrigation(0);
