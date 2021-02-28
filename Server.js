@@ -186,7 +186,7 @@ function OnZone(Area,pumpRate) {
                                 Calculate.setZone(2)
                             }
                             
-                            if(Calculate.getZone() === 2 && Calculate.getcountpump() === 8 ){
+                            if(Calculate.getZone() === 2 && Calculate.getcountpump() === 9 ){
                         
                                 console.log(`setdayCountinValve Zone 2 = ${Calculate.getZone()-1}`);
                                 Calculate.setdayCountinValve(Calculate.getZone()-1)
