@@ -41,18 +41,8 @@ app.get("/sendData/:value",(req,res)=>{
 app.get("/ControlValve/:value",(req,res)=>{
         const Value = req.params.value;
         const status = Value.split(",");
-
-        
-      if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  ){
-            
-         
-          //  console.log(`ELSE status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
-            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
-           
-        
-
-    }
-     
+        console.log(`number pump : ${Calculate.getcountpump()}, pump status ${Calculate.getvalvestatus()} `);
+        res.send(0);
 
 
 })
@@ -60,10 +50,10 @@ app.get("/ControlValve/:value",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
         
-
+        // ขอ request เปิดน้ำ โดยเช็คค่าจาก  App
         if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true) ){
 
-                if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true  ){
+                if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true   && confirmRequest == true){ 
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
                     

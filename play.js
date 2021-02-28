@@ -1,2 +1,4 @@
+const a = "1,2,3,,4"
 
-    console.log(true&&false?true:false);
+const b = a.split(',');
+console.log(b[2]);
