@@ -149,12 +149,13 @@ function OnZone(Area,pumpRate) {
            
     
             if(Ir_new<=0 && confirmRequest == true){
+                Ir_new=0;
                 confirmRequest = false
                 setTimeout(()=>{
                     
                     Calculate.setvalvestatus(false)  
                      Calculate.pluscountpump(1);
-                
+                     Ir_new=0;
                      
 
                      
@@ -201,6 +202,7 @@ function OnZone(Area,pumpRate) {
                         Calculate.setIrrigation(0);
 
                         setTimeout(()=>{
+                        Ir_new=0;
                         Calculate.setcountpump(1);
                         Calculate.setZone(1);
                         Calculate.setcount(0);
