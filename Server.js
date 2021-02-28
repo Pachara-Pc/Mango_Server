@@ -7,7 +7,7 @@ const Calculate = require("./Control/Calculate");
 const Controlpump = require("./Control/Controlpump");
 var checkClose =false;
 // Variable sensor from Arduino
-var confirmRequest = 0;
+var confirmRequest = false;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -42,8 +42,12 @@ app.get("/ControlValve/:value",(req,res)=>{
         const Value = req.params.value;
         const status = Value.split(",");
         console.log(`ControlValve = ${status}`);
-       
-        res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()}`)
+       if(confirmRequest == true){
+           res.send(`${Calculate.getcountpump()},1`)
+       }else{
+        res.send(`${Calculate.getcountpump()},0`)
+       }
+        
 
 })
 
@@ -126,7 +130,7 @@ function OnZone(Area,pumpRate) {
         let Ir_new = Calculate.getIrrigation()
         console.log(`IR_NEW = ${Ir_new}`);
         Calculate.setvalvestatus(true)
-       
+        confirmRequest = true
        
         const Run = setInterval(()=>{
             
