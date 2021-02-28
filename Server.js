@@ -185,6 +185,6 @@ function OnZone(Area,pumpRate) {
             console.log(`On pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()?0:1} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
             
             
-        },500)
+        },1000)
         
     }
