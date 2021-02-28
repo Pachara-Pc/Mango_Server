@@ -48,6 +48,9 @@ app.get("/ControlValve/:value",(req,res)=>{
            res.send(`${Calculate.getcountpump()},1`)
 
        }
+       else if (Calculate.getZone() == 2){
+        res.send(`${Calculate.getcountpump()},0`)
+       }
         else{
        
 
