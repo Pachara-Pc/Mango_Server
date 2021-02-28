@@ -26,8 +26,9 @@ var Round_Zone = false
 var Zone = 1 ;
 var countZone = 0 ;
 
+
 const findMax_Min = (Temp)=>{
-    if(Temp>maxTemp &&Temp<70){
+    if(Temp>maxTemp && Temp<70){
         maxTemp =Temp
     }
 

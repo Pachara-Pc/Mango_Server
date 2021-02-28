@@ -19,9 +19,9 @@ app.get("/OnMaster", (req,res) =>{
     console.log("Master On ");
     if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
         console.log(`Master  ON  IR = ${Calculate.getIrrigation()}`);
-        res.send('O1');   //// O = on
+        res.send('1');   //// O = on
     }else{
-        res.send('C0');   //// C = close
+        res.send('0');   //// C = close
         console.log(`Master  OFF  IR = ${Calculate.getIrrigation()}`);
     }
     
