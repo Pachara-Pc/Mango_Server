@@ -186,7 +186,7 @@ function OnZone(Area,pumpRate) {
                             }
 
                             
-                        },2000)
+                        },4000)
 
                         
                         
@@ -206,7 +206,7 @@ function OnZone(Area,pumpRate) {
                         Calculate.setcount(0);
                         Calculate.setcountday(0)
                         Calculate.setRound_status(true);
-                    },2000)
+                    },4000)
                 }
 
                
