@@ -126,7 +126,6 @@ app.listen(PORT,'0.0.0.0',()=>{
 
 
 function OnZone(Area,pumpRate) {
-        
         let Ir_new = Calculate.getIrrigation()
         console.log(`IR_NEW = ${Ir_new}`);
         Calculate.setvalvestatus(true)
@@ -135,16 +134,26 @@ function OnZone(Area,pumpRate) {
         const Run = setInterval(()=>{
             
             Ir_new-=Calculate.getpumpRate();
+           
     
-    
-            if(Ir_new<=0){
+            if(Ir_new<=0 && confirmRequest == true){
                 confirmRequest = false
-
                 setTimeout(()=>{
                     confirmRequest =true;  
                     Calculate.setvalvestatus(false)  
                      Calculate.pluscountpump(1);
-                     if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
+                
+                
+                    clearInterval(Run) },3000)
+
+                
+                
+                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+                console.log(`countpump  = ${Calculate.getcountpump()}`);
+
+               
+                
+                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
                         console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
                         Calculate.setIrrigation(0)
@@ -176,17 +185,6 @@ function OnZone(Area,pumpRate) {
                         Calculate.setRound_status(true);
                         
                 }
-                
-                    clearInterval(Run) },3000)
-
-                
-                
-                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
-                console.log(`countpump  = ${Calculate.getcountpump()}`);
-
-               
-                
-                
 
                
             }

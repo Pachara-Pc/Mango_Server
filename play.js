@@ -1,16 +1,20 @@
 var a = 10;
-let i =0;
-const A = setInterval(()=>{
+let i = 0;
+setInterval(()=>{
+   
+    if(i == 5){
+        const A = setInterval(()=>{
 
-    
-    if(i== 5){
-        console.log("clear");
-        setTimeout(()=>{
-            clearInterval(A);
-            
-        },3000)
-       
+            if(i%5 ==0){
+                clearInterval(A)
+                console.log("clear");
+            }
+   
+        },1000);
     }
+
     i++;
+
     console.log(i);
-},1000)
+}
+,1000);
