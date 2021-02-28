@@ -43,7 +43,7 @@ app.get("/ControlValve/:value",(req,res)=>{
         const status = Value.split(",");
         console.log(`ControlValve = ${status}`);
        
-
+        req.send(`${Calculate.getcountpump(),Calculate.getvalvestatus()}`)
 
 })
 
