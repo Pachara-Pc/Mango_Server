@@ -145,7 +145,7 @@ function OnZone(Area,pumpRate) {
        
         const Run = setInterval(()=>{
             
-            Ir_new-=Calculate.getpumpRate();
+            
            
     
             if(Ir_new<=0 && confirmRequest == true){
@@ -154,12 +154,12 @@ function OnZone(Area,pumpRate) {
                 setTimeout(()=>{
                     
                     Calculate.setvalvestatus(false)  
-                     Calculate.pluscountpump(1);
-                     Ir_new=0;
+                    Calculate.pluscountpump(1);
+                    Ir_new=0;
                      
 
                      
-                    clearInterval(Run) },3000)
+                    clearInterval(Run)},3000)
 
                 
                 
@@ -212,6 +212,8 @@ function OnZone(Area,pumpRate) {
                 }
 
                
+            }else{
+                Ir_new-=Calculate.getpumpRate();
             }
     
 
