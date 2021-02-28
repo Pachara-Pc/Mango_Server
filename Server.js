@@ -99,7 +99,7 @@ setInterval(()=>{
             }
 
 
-                if(Time.getSeconds() % 30 == 0 && Calculate.getIrrigation() === 0){
+                if(Time.getSeconds() % 50 == 0 && Calculate.getIrrigation() === 0){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
