@@ -151,7 +151,16 @@ function OnZone(Area,pumpRate) {
                      Calculate.pluscountpump(1);
                 
                      confirmRequest =true;  
-                     if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
+                    clearInterval(Run) },3000)
+
+                
+                
+                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+                console.log(`countpump  = ${Calculate.getcountpump()}`);
+
+               
+                
+                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
                         confirmRequest = false
                         console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
@@ -185,17 +194,6 @@ function OnZone(Area,pumpRate) {
                         Calculate.setRound_status(true);
                         
                 }
-                
-                    clearInterval(Run) },3000)
-
-                
-                
-                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
-                console.log(`countpump  = ${Calculate.getcountpump()}`);
-
-               
-                
-                
 
                
             }
