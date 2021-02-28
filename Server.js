@@ -137,7 +137,7 @@ function OnZone(Area,pumpRate) {
                 
                 Calculate.setvalvestatus(false)
                 
-                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()?0:1} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
                 console.log(`countpump  = ${Calculate.getcountpump()}`);
 
                
@@ -182,7 +182,7 @@ function OnZone(Area,pumpRate) {
             }
     
 
-            console.log(`On pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()?0:1} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+            console.log(`On pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
             
             
         },1000)
