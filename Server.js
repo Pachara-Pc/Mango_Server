@@ -44,7 +44,8 @@ app.get("/ControlValve/:value",(req,res)=>{
 
         
       if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  ){
-
+            
+            if(status[0] === Calculate.getcountpump() )
             console.log(`IF status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
             res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?1:0}`)
         }
@@ -149,7 +150,7 @@ function OnZone(Area,pumpRate) {
 
                 Calculate.setvalvestatus(true)
                 
-                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()?0:1} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
                 console.log(`countpump  = ${Calculate.getcountpump()}`);
 
                
@@ -194,7 +195,7 @@ function OnZone(Area,pumpRate) {
             }
     
 
-            console.log(`On pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+            console.log(`On pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()?0:1} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
             
             
         },500)
