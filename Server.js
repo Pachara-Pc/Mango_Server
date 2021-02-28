@@ -43,9 +43,11 @@ app.get("/ControlValve/:value",(req,res)=>{
         const status = Value.split(",");
         console.log(`ControlValve = ${status}`);
        if(confirmRequest == true){
+           
            console.log(`${Calculate.getcountpump()},1 request form Esp` );
            res.send(`${Calculate.getcountpump()},1`)
        }else{
+           
         console.log(`${Calculate.getcountpump()},0 request form Esp` );
         res.send(`${Calculate.getcountpump()},0`)
        }
@@ -155,7 +157,7 @@ function OnZone(Area,pumpRate) {
 
                
                 
-                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 5){
+                if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
                    
                         console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
@@ -177,7 +179,7 @@ function OnZone(Area,pumpRate) {
                 }
 
 
-                if(Calculate.getZone() === 2 && Calculate.getcountpump() === 9 ){
+                if(Calculate.getZone() === 2 && Calculate.getcountpump() === 8 ){
                     
                         console.log(`setdayCountinValve Zone 2 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
