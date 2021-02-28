@@ -177,14 +177,14 @@ function OnZone(Area,pumpRate) {
 
                        
                             if(Calculate.getpump() == 1){
-                                console.log(`Reset If pump 1  ${getpump()}`);
+                                console.log(`Reset If pump 1  ${Calculate.getpump()}`);
                                 Calculate.setRound_status(true);
                                 Calculate.setcountpump(0);  
                                 Calculate.setcountday(1);
                                 Calculate.setcount(0);
                                 Calculate.setZone(1);
                             }else{
-                                console.log(`Reset If pump 2  ${getpump()}`);
+                                console.log(`Reset If pump 2  ${Calculate.getpump()}`);
                                 Calculate.setZone(2)
                             }
 
