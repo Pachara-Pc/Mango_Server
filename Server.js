@@ -104,13 +104,13 @@ setInterval(()=>{
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
                 }
                 else{
-                    console.log("system run");
+                    console.log(`system run  ${Calculate.getcountpump()}`);
                 }
                 
             
             }else{
 
-                console.log("system run");
+                console.log(`system run  ${Calculate.getcountpump()}`);
 
             }
 
@@ -174,6 +174,7 @@ function OnZone(Area,pumpRate) {
                         Calculate.setIrrigation(0)
 
                         setTimeout(()=>{
+
                             if(Calculate.getpump() == 1){
                                 Calculate.setRound_status(true);
                                 Calculate.setcountpump(1);  
