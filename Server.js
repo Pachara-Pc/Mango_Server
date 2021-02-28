@@ -45,16 +45,11 @@ app.get("/ControlValve/:value",(req,res)=>{
         
       if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  ){
             
-            if(status[0] === Calculate.getcountpump() && status[1] == Calculate.getvalvestatus()?0:1){
-                console.log(`IF status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
-                res.send(`${status[0]},${status[1]}`)
-            }
-        
-        else{
-            console.log(`ELSE status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
+         
+          //  console.log(`ELSE status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
             res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
            
-        }
+        
 
     }
      
@@ -68,7 +63,7 @@ setInterval(()=>{
 
         if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true) ){
 
-                        if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true  ){
+                if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true  ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
                     
