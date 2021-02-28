@@ -176,7 +176,7 @@ function OnZone(Area,pumpRate) {
                         Calculate.setIrrigation(0)
 
                        
-                            if(Calculate.getpump() == 1){
+                            if(Calculate.getpump() === 1){
                                 console.log(`Reset If pump 1  ${Calculate.getpump()}`);
                                 Calculate.setRound_status(true);
                                 Calculate.setcountpump(0);  
