@@ -1,19 +1,14 @@
 var i = 0;
 var j = 1;
 var count = 0
-setInterval(()=>{
+const A = setInterval(()=>{
 
-    console.log(`${j} , ${i}   count = ${count}`);
-    
-    
-    if(count == 3){
-        count = 0
-        i = 1;
-        j+=1;
+    if(i == 10){
+        setTimeout(()=>{console.log(`Time OUT 3 sec`);},3000)
+        setTimeout(()=>{console.log(`Time OUT 5 sec `);},5000)
+        console.log(i);
+        clearInterval(A)
     }
-    if(j > 4){
-        j = 1;
-    }
-
-    count+=1;
-},1000)
+    i++;
+    console.log(i);
+},200)
