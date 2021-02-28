@@ -151,7 +151,7 @@ function OnZone(Area,pumpRate) {
                      Calculate.pluscountpump(1);
                 
                      confirmRequest =true;  
-                    clearInterval(Run) },3000)
+                    clearInterval(Run) 
 
                 
                 
@@ -194,7 +194,7 @@ function OnZone(Area,pumpRate) {
                         Calculate.setRound_status(true);
                         
                 }
-
+            },3000)
                
             }
     
