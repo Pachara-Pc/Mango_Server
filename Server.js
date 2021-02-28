@@ -46,11 +46,11 @@ app.get("/ControlValve/:value",(req,res)=>{
       if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  ){
 
             console.log(`IF status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
-            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
+            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?1:0}`)
         }
         else{
             console.log(`ELSE status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
-            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?0:1}`)
+            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()?1:0}`)
             confirmRequest = true;
         }
 
