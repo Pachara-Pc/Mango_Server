@@ -1,4 +1,4 @@
-const a = "1,2,3,,4"
+const A = true && true
 
-const b = a.split(',');
-console.log(b[2]);
+const B = A || false
+console.log(B);
