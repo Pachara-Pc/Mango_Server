@@ -45,22 +45,17 @@ app.get("/ControlValve/:value",(req,res)=>{
         
       if( (Controlpump.getZone_1()||Controlpump.getZone_2() ) == true  ){
 
-        if(status[0] === Calculate.getcountpump() && status[2] === Calculate.getvalvestatus()?0:1 ){
-            console.log(`status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
-            res.send(`${Calculate.getcountpump()},1`)
+            console.log(`status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()}`);
+            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()}`)
         }
         else{
-            console.log(`status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()?0:1}`);
-            res.send(`${Calculate.getcountpump()},0`)
+            console.log(`status[0] = ${status[0]} Calculate.getcountpump() = ${Calculate.getcountpump()} status[1] = ${status[1]} Calculate.getvalvestatus()?0:1 = ${Calculate.getvalvestatus()}`);
+            res.send(`${Calculate.getcountpump()},${Calculate.getvalvestatus()}`)
+            confirmRequest = true;
         }
 
         
-      }else{
-        
-       
-       
-
-      }
+     
 
 
 })
@@ -69,38 +64,38 @@ setInterval(()=>{
         const Time = new Date();
         
 
-        if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true) && confirmRequest == true){
+        if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true) ){
 
-                        if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true ){
+                        if(Calculate.getcountpump() == 1 && Calculate.getvalvestatus() == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
                     
 
-                }else   if(Calculate.getcountpump() == 2 && Calculate.getvalvestatus()  == true){
+                }else   if(Calculate.getcountpump() == 2 && Calculate.getvalvestatus()  == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
 
-                }else   if(Calculate.getcountpump() == 3 && Calculate.getvalvestatus()  == true){
+                }else   if(Calculate.getcountpump() == 3 && Calculate.getvalvestatus()  == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
 
-                }else   if(Calculate.getcountpump() == 4 && Calculate.getvalvestatus()  == true){
+                }else   if(Calculate.getcountpump() == 4 && Calculate.getvalvestatus()  == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
 
-                }else   if(Calculate.getcountpump() == 5 && Calculate.getvalvestatus() == true){
+                }else   if(Calculate.getcountpump() == 5 && Calculate.getvalvestatus() == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
 
-                }else   if(Calculate.getcountpump() == 6 && Calculate.getvalvestatus()  == true){
+                }else   if(Calculate.getcountpump() == 6 && Calculate.getvalvestatus()  == true && confirmRequest == true){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
 
-                }else   if(Calculate.getcountpump() == 7 && Calculate.getvalvestatus()  == true){
+                }else   if(Calculate.getcountpump() == 7 && Calculate.getvalvestatus()  == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
 
-                }else   if(Calculate.getcountpump() == 8 && Calculate.getvalvestatus()  == true){
+                }else   if(Calculate.getcountpump() == 8 && Calculate.getvalvestatus()  == true && confirmRequest == true ){
 
                     OnZone(Calculate.getArea(),Calculate.getpumpRate);
                 }
@@ -153,7 +148,7 @@ function OnZone(Area,pumpRate) {
             if(Ir_new<=0){
 
                 Calculate.setvalvestatus(true)
-                confirmRequest = true;
+                
                 console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
                 console.log(`countpump  = ${Calculate.getcountpump()}`);
 
