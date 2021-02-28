@@ -149,10 +149,24 @@ function OnZone(Area,pumpRate) {
             if(Ir_new<=0 && confirmRequest == true){
                 confirmRequest = false
                 setTimeout(()=>{
+                    
+                    Calculate.setvalvestatus(false)  
+                     Calculate.pluscountpump(1);
+                
+                     confirmRequest =true;  
 
-                     if(Calculate.getZone() === 1 && Calculate.getcountpump() === 4){
+                     
+                    clearInterval(Run) },3000)
+
+                
+                
+                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
+                console.log(`countpump  = ${Calculate.getcountpump()}`);
+
+               
+                
+                if(Calculate.getZone() === 1 && Calculate.getcountpump() > 4){
                         confirmRequest = false
-
                         console.log(`setdayCountinValve  Zone 1 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
                         Calculate.setIrrigation(0)
@@ -173,7 +187,7 @@ function OnZone(Area,pumpRate) {
                 }
 
 
-                if(Calculate.getZone() === 2 && Calculate.getcountpump() === 8 ){
+                if(Calculate.getZone() === 2 && Calculate.getcountpump() > 8 ){
                         confirmRequest = false
                         console.log(`setdayCountinValve Zone 2 = ${Calculate.getZone()-1}`);
                         Calculate.setdayCountinValve(Calculate.getZone()-1)
@@ -185,20 +199,6 @@ function OnZone(Area,pumpRate) {
                         Calculate.setRound_status(true);
                         
                 }
-
-                Calculate.pluscountpump(1);
-                Calculate.setvalvestatus(false)  
-                confirmRequest =true;  
-                    clearInterval(Run) },3000)
-
-                
-                
-                console.log(`Close pump = ${Calculate.getcountpump()} Status = ${Calculate.getvalvestatus()} Zone = ${Calculate.getZone()} Ir_new = ${Ir_new} `);
-                console.log(`countpump  = ${Calculate.getcountpump()}`);
-
-               
-                
-                
 
                
             }
