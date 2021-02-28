@@ -43,8 +43,10 @@ app.get("/ControlValve/:value",(req,res)=>{
         const status = Value.split(",");
         console.log(`ControlValve = ${status}`);
        if(confirmRequest == true){
+           console.log(`${Calculate.getcountpump()},1 request form Esp` );
            res.send(`${Calculate.getcountpump()},1`)
        }else{
+        console.log(`${Calculate.getcountpump()},1 request form Esp` );
         res.send(`${Calculate.getcountpump()},0`)
        }
         
