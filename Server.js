@@ -176,8 +176,8 @@ function OnZone(Area,pumpRate) {
                         setTimeout(()=>{
                             if(Calculate.getpump() == 1){
                                 Calculate.setRound_status(true);
-                                Calculate.setcountpump(0);  
-                                Calculate.setcountday(1);
+                                Calculate.setcountpump(1);  
+                                Calculate.setcountday(0);
                                 Calculate.setcount(0);
                                 Calculate.setZone(1);
                             }else{
@@ -197,7 +197,7 @@ function OnZone(Area,pumpRate) {
                                 Calculate.setRound_status(true);
                                 
                         }
-                        
+
 
                         },3000)
 
