@@ -44,11 +44,14 @@ app.get("/ControlValve/:value",(req,res)=>{
         console.log(`ControlValve = ${status}`);
        if(confirmRequest == true){
            
-           console.log(`${Calculate.getcountpump()},1 request form Esp` );
+           console.log(`${Calculate.getcountpump()},1  Zone = ${Calculate.getZone()} request form Esp` );
            res.send(`${Calculate.getcountpump()},1`)
-       }else{
-           
-        console.log(`${Calculate.getcountpump()},0 request form Esp` );
+
+          
+
+       
+
+            console.log(`${Calculate.getcountpump()},0 Zone = ${Calculate.getZone()} request form Esp` );
         res.send(`${Calculate.getcountpump()},0`)
        }
         
