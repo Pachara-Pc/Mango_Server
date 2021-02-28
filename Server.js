@@ -155,7 +155,7 @@ function OnZone(Area,pumpRate) {
                     Calculate.setvalvestatus(false)  
                      Calculate.pluscountpump(1);
                 
-                     confirmRequest =true;  
+                     
 
                      
                     clearInterval(Run) },3000)
@@ -176,7 +176,7 @@ function OnZone(Area,pumpRate) {
 
                         if(Calculate.getpump() == 1){
                             Calculate.setRound_status(true);
-                            Calculate.setcountpump(1);  
+                            Calculate.setcountpump(0);  
                             Calculate.setcountday(0);
                             Calculate.setcount(0);
                             Calculate.setZone(1);
