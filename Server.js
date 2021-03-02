@@ -29,7 +29,7 @@ app.get("/resetIrrigation/",(req,res)=>{
 
     Calculate.setdayCountinValve(Calculate.getcountpump());
     Calculate.pluscountpump(1);
-
+    Calculate.setIrrigation(0)
     if(Calculate.getcountpump() == Calculate.getpump()){
         Calculate.setcountpump(0);
         Calculate.setcountday(0);
