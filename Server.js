@@ -27,6 +27,7 @@ app.get("/OnMaster", (req,res) =>{
 
 app.get("/resetIrrigation/",(req,res)=>{
     Calculate.setIrrigation(0);
+    console.log(`reseted  Irrigation  = 0`);
     res.send(`reseted  Irrigation  = 0`);
 })
 
