@@ -32,6 +32,7 @@ app.get("/sendData/:value",(req,res)=>{
 
         Calculate.findMax_Min(parseInt(dataArray[0]))
         console.log(`Temp = ${ dataArray} `);
+        console.log(`Temp [0] = ${ dataArray[0]} `);
         res.send(`Updated`);
 })
 
