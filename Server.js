@@ -26,7 +26,19 @@ app.get("/OnMaster", (req,res) =>{
 })
 
 app.get("/resetIrrigation/",(req,res)=>{
-    Calculate.setIrrigation(0);
+
+    Calculate.setdayCountinValve(Calculate.getcountpump());
+    Calculate.pluscountpump(1);
+
+    if(Calculate.getcountpump() == Calculate.getpump()){
+        Calculate.setcountpump(0);
+        Calculate.setcountday(0);
+        Calculate.setcount(0);
+        Calculate.setRound_status(true);
+        console.log(`Clear Round `);
+    }
+  
+
     console.log(`reseted  Irrigation  = 0`);
     res.send(`reseted  Irrigation  = 0`);
 })
