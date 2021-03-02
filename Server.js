@@ -25,6 +25,11 @@ app.get("/OnMaster", (req,res) =>{
     
 })
 
+app.get("/resetIrrigation/",(req,res)=>{
+    Calculate.setIrrigation(0);
+    res.send(`reseted  Irrigation  = 0`);
+})
+
 app.get("/sendData/:value",(req,res)=>{
 
         const allData = req.params.value;
