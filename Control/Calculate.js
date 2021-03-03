@@ -26,6 +26,9 @@ var Round_Zone = false
 var Zone = 1 ;
 var countZone = 0 ;
 
+const updateRainday = (Rain)=>{
+    
+}
 
 const findMax_Min = (Temp)=>{
     if(Temp>maxTemp && Temp<70){
@@ -81,7 +84,7 @@ function Calculate_round_1() {
            // console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
             Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
-            console.log(`Irrigation = ${Irrigation} Area = ${Area}` );
+            console.log(`Irrigation = ${Irrigation} Area = ${countpump}` );
             
 
             valvestatus = false;
