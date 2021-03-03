@@ -30,15 +30,17 @@ app.get("/resetIrrigation/",(req,res)=>{
     Calculate.setdayCountinValve(Calculate.getcountpump());
     Calculate.pluscountpump(1);
     Calculate.setIrrigation(0)
+
     if(Calculate.getcountpump() == Calculate.getpump()){
+
         Calculate.setcountpump(0);
         Calculate.setcountday(0);
         Calculate.setcount(0);
         Calculate.setRound_status(true);
+
         console.log(`Clear Round `);
     }
   
-
     console.log(`reseted  Irrigation  = 0`);
     res.send(`reseted  Irrigation  = 0`);
 })
@@ -49,9 +51,14 @@ app.get("/sendData/:value",(req,res)=>{
         const dataArray = allData.split(",");
 
         Calculate.findMax_Min(parseInt(dataArray[0]))
+        Calculate.updateRainday()
         console.log(`Temp = ${ dataArray} `);
         console.log(`Temp [0] = ${ dataArray[0]} `);
         res.send(`Updated`);
+})
+app.get("/CheckZone",(req,res)=>{
+   
+    res.send(`${Calculate.getcountpump()}`)
 })
 
 app.get("/CheckIrrigation/",(req,res)=>{
