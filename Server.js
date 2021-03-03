@@ -51,7 +51,7 @@ app.get("/sendData/:value",(req,res)=>{
         const dataArray = allData.split(",");
 
         Calculate.findMax_Min(parseInt(dataArray[0]))
-        Calculate.updateRainday()
+        
         console.log(`Temp = ${ dataArray} `);
         console.log(`Temp [0] = ${ dataArray[0]} `);
         res.send(`Updated`);
