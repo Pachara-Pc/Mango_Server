@@ -46,6 +46,7 @@ app.get("/sendData/:value",(req,res)=>{
         console.log(`Temp [0] = ${ dataArray[0]} `);
         res.send(`Updated`);
 })
+
 app.get("/CheckZone",(req,res)=>{
    
     res.send(`${Calculate.getcountpump()}`)
@@ -56,7 +57,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
         res.send(`${Calculate.getIrrigation()}`);
 })
 
- app.get("/Timeopenvalve",(res,req)=>{
+ app.get("/Timeopenvalve",(req,res)=>{
 
         if(Calculate.getIrrigation != 0){
                 res.send(Calculate.Timeopenvalve());
@@ -66,7 +67,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
         
  })
     
-app.get("/ShowdueDate",(res,req)=>{
+app.get("/ShowdueDate",(req,res)=>{
         res.send(Calculate.getdueDate())
 })
 
