@@ -13,17 +13,7 @@ app.get("/", (req,res) =>{
             res.send('hello server  ')
 })
 
-app.get("/OnMaster", (req,res) =>{
-    console.log("Master On ");
-    if( Calculate.getIrrigation() != 0 && (Controlpump.getZone_1() || Controlpump.getZone_2() === true)){
-        console.log(`Master  ON  IR = ${Calculate.getIrrigation()}`);
-        res.send('1');   //// O = on
-    }else{
-        res.send('0');   //// C = close
-        console.log(`Master  OFF  IR = ${Calculate.getIrrigation()}`);
-    }
-    
-})
+
 
 app.get("/resetIrrigation/",(req,res)=>{
 
@@ -37,7 +27,7 @@ app.get("/resetIrrigation/",(req,res)=>{
         Calculate.setcountday(0);
         Calculate.setcount(0);
         Calculate.setRound_status(true);
-
+        Calculate.setdueDate("");
         console.log(`Clear Round `);
     }
   
@@ -66,9 +56,19 @@ app.get("/CheckIrrigation/",(req,res)=>{
         res.send(`${Calculate.getIrrigation()}`);
 })
 
- 
-    
+ app.get("/Timeopenvalve",(res,req)=>{
 
+        if(Calculate.getIrrigation != 0){
+                res.send(Calculate.Timeopenvalve());
+        }else{
+                res.send(`0`);
+        }
+        
+ })
+    
+app.get("/ShowdueDate",(res,req)=>{
+        res.send(Calculate.getdueDate())
+})
 
 setInterval(()=>{ 
         const Time = new Date();
