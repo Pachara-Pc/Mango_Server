@@ -165,13 +165,16 @@ function Calculate_round_2() {
 }
 function Timeopenvalve(){
         let H = Math.floor(((Irrigation*(Area*100))/pumpRate)/60)
-        let M = Math.floor(((Irrigation*(Area*1))/pumpRate)-(60*H))
+        let M = Math.floor(((Irrigation*(Area*100))/pumpRate)-(60*H))
         return `${H>=10?H:"0"+H}:${M>=10?M:"0"+M}`
 }
 
 function calculateDate(inputDay){
-    let due = new Date()
-  let D = due.getDay(), M = due.getMonth()+1, Y = due.getFullYear();
+
+    let due = new Date();
+
+    let D = due.getDay(), M = due.getMonth()+1, Y = due.getFullYear();
+
     if (M == 1 || M == 3 || M == 5 || M == 7 || M == 8 || M == 10 || M == 12) {
   
       D = inputDay + D;
