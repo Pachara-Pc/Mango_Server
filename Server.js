@@ -75,7 +75,7 @@ app.get("/ShowdueDate",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
         
-                if(Time.getMinutes() & 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
+                if(Time.getMinutes() && 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
