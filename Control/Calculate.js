@@ -52,6 +52,7 @@ function Calculate_round_1() {
     rainInterval[count] = rainDay
     count++;
     countday++;
+    
     if(count == 1){
         dueDate = calculateDate(dayConfig)
     }
