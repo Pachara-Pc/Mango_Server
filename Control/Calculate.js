@@ -219,10 +219,11 @@ function calculateDate(inputDay){
     if(D == due.getDay()&& M == due.getMonth()+1 && Y == due.getFullYear()){
       return (``)
     }else{
-      return (`${D<10?"0"+D:D}/${M<10?"0"+D:D}/${Y}`)
+      
+      return (`${D<10?"0"+D:D}/${M<10?"0"+M:M}/${Y}`)
     }
     
-    console.log(`${D}/${M}/${Y}`);
+    
   }
 
 function setcountzone (set){
