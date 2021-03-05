@@ -215,7 +215,7 @@ function calculateDate(inputDay){
         M++;
       }
     }
-    return (`${D}/${M}/${Y}`)
+    return (`${D<10?"0"+D:D}/${M<10?"0"+D:D}/${Y}`)
     console.log(`${D}/${M}/${Y}`);
   }
 
