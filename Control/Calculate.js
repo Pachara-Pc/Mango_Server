@@ -215,7 +215,12 @@ function calculateDate(inputDay){
         M++;
       }
     }
-    return (`${D<10?"0"+D:D}/${M<10?"0"+D:D}/${Y}`)
+    if(D == due.getDay()&& M == due.getMonth()+1 && Y == due.getFullYear()){
+      return (``)
+    }else{
+      return (`${D<10?"0"+D:D}/${M<10?"0"+D:D}/${Y}`)
+    }
+    
     console.log(`${D}/${M}/${Y}`);
   }
 
