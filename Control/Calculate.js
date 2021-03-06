@@ -13,7 +13,7 @@ var Sum =0;
 var SumetInterval =0;       // ผลรวมมประสิทธิ์ความต้องการน้ำของพิช เพื่อใช้ในการคำนวณค่า Apx
 var dayConfig = 3;           // วันที่เมือครบรอบจ่ายน้ำ    Config
 var Irrigation =0;          // ความสูงของปริมาณน้ำ
-var Area = 1;               // พิ้นที่  Config
+var Area = 400;               // พิ้นที่  Config
 var valvestatus = true;    // สถานะของวาล์วน้ำ
 var rainDay=0;              // ปริมาณน้ำฝนรายวัน
 var pump = 1 ;              // จำนวนปั้ม ในที่นี้หมายถึงโซนการจ่ายน้ำ โซนละ 4 ปั้ม Config
@@ -165,8 +165,8 @@ function Calculate_round_2() {
         }
 }
 function Timeopenvalve(){
-        let H = Math.floor(((Irrigation*(Area*100))/pumpRate)/60)
-        let M = Math.floor(((Irrigation*(Area*100))/pumpRate)-(60*H))
+        let H = Math.floor(((Irrigation*Area)/pumpRate)/60)
+        let M = Math.floor(((Irrigation*Area)/pumpRate)-(60*H))
         return `${H>=10?H:"0"+H}:${M>=10?M:"0"+M}`
 }
 
