@@ -164,6 +164,7 @@ function Calculate_round_2() {
         //countday = 0;
         }
 }
+
 function Timeopenvalve(){
         let H = Math.floor(((Irrigation*Area)/pumpRate)/60)
         let M = Math.floor(((Irrigation*Area)/pumpRate)-(60*H))

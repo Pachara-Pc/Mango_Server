@@ -76,6 +76,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
         
  })
 
+
 app.get("/setStart",(req,res)=>{
         
         res.send(`0`);
@@ -120,25 +121,25 @@ app.get("/ShowdueDate",(req,res)=>{
         res.send(Calculate.getdueDate())
 })
 
-// setInterval(()=>{ 
-//         const Time = new Date();
+setInterval(()=>{ 
+        const Time = new Date();
         
-//                 if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
+                if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
 
-//                         if(Calculate.getRound_status() == false){
-//                                 Calculate.Calculate_round_1()
-//                                 console.log("Calculate.Calculate_round_1()");
-//                         }
-//                         else{
-//                                 Calculate.Calculate_round_2()
-//                                 console.log("Calculate.Calculate_round_2()");
-//                         }
+                        if(Calculate.getRound_status() == false){
+                                Calculate.Calculate_round_1()
+                                console.log("Calculate.Calculate_round_1()");
+                        }
+                        else{
+                                Calculate.Calculate_round_2()
+                                console.log("Calculate.Calculate_round_2()");
+                        }
                         
-//                         console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
-//                 }
+                       // console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+                }
 
-//              //   console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
-// },1000)
+             //   console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+},1000)
 
 app.listen(PORT,'0.0.0.0',()=>{
             console.log(`Server is running ${PORT}`);
