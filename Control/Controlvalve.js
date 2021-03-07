@@ -13,7 +13,7 @@ function queueValve(countDown){
 
     for(let i =1;i<=4;){
  
-    console.log(`valve ${i} : ${H}:${M}`);
+    console.log(`valve ${i} : ${H}:${Math.floor(M)}`);
       M+=countDown/4
     
     while(M>59){
@@ -26,9 +26,9 @@ function queueValve(countDown){
     }
     
 
-    console.log(`valve ${i} : ${H}:${M}`);
+    console.log(`valve ${i} : ${H}:${Math.floor(M)}`);
     
-    timeStop.push(`${H}:${M}:${1}`);
+    timeStop.push(`${H}:${Math.floor(M)}:${1}`);
     i++;
       
     }
