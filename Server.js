@@ -77,9 +77,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
  app.get("/getRealtime",(req,res)=>{
         const  Time = new Date()
         
-        res.send(`${Time.getHours()>10?"0"+Time.getHours():Time.getHours()}
-                :${Time.getMinutes()>10?"0"+Time.getMinutes():Time.getMinutes()}
-                :${Time.getSeconds()>10?"0"+Time.getSeconds():Time.getSeconds()}`)
+        res.send(`${Time.getHours()>10?"0"+Time.getHours():Time.getHours()}:${Time.getMinutes()>10?"0"+Time.getMinutes():Time.getMinutes()}:${Time.getSeconds()>10?"0"+Time.getSeconds():Time.getSeconds()}`)
         
 
  })
