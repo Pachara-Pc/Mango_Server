@@ -26,7 +26,7 @@ function queueValve(countDown){
     }
     
 
-    console.log(`valve ${i} : ${H}:${Math.floor(M)}`);
+    console.log(`valve ${i} : ${H}:${Math.floor(M)}:${1}`);
     
     timeStop.push(`${H}:${Math.floor(M)}:${1}`);
     i++;
@@ -42,7 +42,9 @@ setInterval(() => {
     if(start == 1){
         console.log(`on Valve ${Valve}`);
         ValveNumber[Valve-1] = 1;
-    
+        
+
+
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[Valve-1]}`){
         ValveNumber[Valve-1] = 0;
         console.log(`off Valve ${Valve}`);
