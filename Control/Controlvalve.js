@@ -19,8 +19,8 @@ function queueValve(countDown){
     
     while(M>59){
       console.log(M);
-    if(M >= 60){
-      M-=60;
+    if(M > 59){
+      M-=59;
       H+=1;
     }
     console.log("in while");
@@ -57,19 +57,20 @@ setInterval(() => {
         Valve = 1;
         
         timeStop = [];
-        Calculate.setdayCountinValve(Calculate.getcountpump());
-    Calculate.pluscountpump(1);
-    Calculate.setIrrigation(0)
 
-    if(Calculate.getcountpump() == Calculate.getpump()){
+    // Calculate.setdayCountinValve(Calculate.getcountpump());
+    // Calculate.pluscountpump(1);
+    // Calculate.setIrrigation(0)
 
-        Calculate.setcountpump(0);
-        Calculate.setcountday(0);
-        Calculate.setcount(0);
-        Calculate.setRound_status(true);
-        Calculate.setdueDate("");
-        console.log(`Clear Round `);
-    }
+    // if(Calculate.getcountpump() == Calculate.getpump()){
+
+    //     Calculate.setcountpump(0);
+    //     Calculate.setcountday(0);
+    //     Calculate.setcount(0);
+    //     Calculate.setRound_status(true);
+    //     Calculate.setdueDate("");
+    //     console.log(`Clear Round `);
+    // }
       }
 
     }
