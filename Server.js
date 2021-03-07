@@ -78,7 +78,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
         const  Time = new Date()
         
         res.send(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`)
-        
+        console.log(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`);
 
  })
 
@@ -110,7 +110,7 @@ setInterval(()=>{
                         console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
                 }
 
-               
+             //   console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
 },1000)
 
 app.listen(PORT,'0.0.0.0',()=>{
