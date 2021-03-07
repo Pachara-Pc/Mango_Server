@@ -1,3 +1,4 @@
+const Calculate = require("./Calculate")
 var ValveNumber = [0,0,0,0];
 var minTime = 0;
 var S = 0;
@@ -54,9 +55,21 @@ setInterval(() => {
       if(Valve === 5){
         start = 0;
         Valve = 1;
-
-        timeStop = [];
         
+        timeStop = [];
+        Calculate.setdayCountinValve(Calculate.getcountpump());
+    Calculate.pluscountpump(1);
+    Calculate.setIrrigation(0)
+
+    if(Calculate.getcountpump() == Calculate.getpump()){
+
+        Calculate.setcountpump(0);
+        Calculate.setcountday(0);
+        Calculate.setcount(0);
+        Calculate.setRound_status(true);
+        Calculate.setdueDate("");
+        console.log(`Clear Round `);
+    }
       }
 
     }
