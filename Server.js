@@ -4,7 +4,7 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
-
+const {queueValve,getValveNumber,setStart} = require("./Control/Controlvalve")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -67,12 +67,41 @@ app.get("/CheckIrrigation/",(req,res)=>{
         
  })
 
- app.get("/getTimeonValve:Time",(req,res)=>{
-        const  Minute =  req.params.value;
+ app.get("/getTimeonValve/:Time",(req,res)=>{
+        const  Minute =  req.params.Time;
+        queueValve(parseInt(Minute));
+        setStart(1);
+        console.log(Minute);
+        res.send("")
+        
+ })
+
+app.get("/setStart",(req,res)=>{
+        
+        res.send(`0`);
+})
+
+ app.get("/ValveControl_1/",(req,res)=>{
 
         
-
+        res.send(`${getValveNumber(0)}`)
  })
+
+ app.get("/ValveControl_2",(req,res)=>{
+
+        res.send(`${getValveNumber(1)}`)
+ })
+
+ app.get("/ValveControl_3",(req,res)=>{
+
+        res.send(`${getValveNumber(2)}`)
+ })
+
+ app.get("/ValveControl_4",(req,res)=>{
+
+        res.send(`${getValveNumber(3)}`)
+ })
+
 
  app.get("/getRealtime",(req,res)=>{
         const  Time = new Date()
@@ -82,10 +111,8 @@ app.get("/CheckIrrigation/",(req,res)=>{
 
  })
 
- app.get("/ValveControl_1",(req,res)=>{
 
-        
- })
+
 
 
 app.get("/ShowdueDate",(req,res)=>{
@@ -93,25 +120,25 @@ app.get("/ShowdueDate",(req,res)=>{
         res.send(Calculate.getdueDate())
 })
 
-setInterval(()=>{ 
-        const Time = new Date();
+// setInterval(()=>{ 
+//         const Time = new Date();
         
-                if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
+//                 if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
 
-                        if(Calculate.getRound_status() == false){
-                                Calculate.Calculate_round_1()
-                                console.log("Calculate.Calculate_round_1()");
-                        }
-                        else{
-                                Calculate.Calculate_round_2()
-                                console.log("Calculate.Calculate_round_2()");
-                        }
+//                         if(Calculate.getRound_status() == false){
+//                                 Calculate.Calculate_round_1()
+//                                 console.log("Calculate.Calculate_round_1()");
+//                         }
+//                         else{
+//                                 Calculate.Calculate_round_2()
+//                                 console.log("Calculate.Calculate_round_2()");
+//                         }
                         
-                        console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
-                }
+//                         console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+//                 }
 
-             //   console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
-},1000)
+//              //   console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+// },1000)
 
 app.listen(PORT,'0.0.0.0',()=>{
             console.log(`Server is running ${PORT}`);
