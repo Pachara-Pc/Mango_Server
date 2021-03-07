@@ -1,5 +1,7 @@
-const {openZone_1,openZone_2} = require("./Controlpump");
+var Time = new Date();
+let H = Time.getHours() ;
+let M = Time.getMinutes();
+let S = 0;
 
-const x = openZone_1(1);
 
-console.log(x);
+
