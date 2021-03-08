@@ -34,6 +34,8 @@ function queueValve(countDown){
     timeStop.push(`${H}:${Math.floor(M)}:${30}`);
      if(i===4){
          timeStop.push(`${H}:${Math.floor(M)}:${20}`);
+
+         timeStop.push(`${H}:${Math.floor(M)}:${50}`);
       console.log(timeStop);
        }
     i++;
@@ -67,25 +69,29 @@ setInterval(() => {
         Valve++;
       }
       
+      if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[5]}`){
+        Calculate.setdayCountinValve(Calculate.getcountpump());
+    Calculate.pluscountpump(1);
+    Calculate.setIrrigation(0)
+
+    if(Calculate.getcountpump() == Calculate.getpump()){
+
+        Calculate.setcountpump(0);
+        Calculate.setcountday(0);
+        Calculate.setcount(0);
+        Calculate.setRound_status(true);
+        Calculate.setdueDate("");
+        console.log(`Clear Round `);
+    }
+      }
+
       if(Valve === 5){
         start = 0;
         Valve = 1;
         
         timeStop = [];
 
-    // Calculate.setdayCountinValve(Calculate.getcountpump());
-    // Calculate.pluscountpump(1);
-    // Calculate.setIrrigation(0)
-
-    // if(Calculate.getcountpump() == Calculate.getpump()){
-
-    //     Calculate.setcountpump(0);
-    //     Calculate.setcountday(0);
-    //     Calculate.setcount(0);
-    //     Calculate.setRound_status(true);
-    //     Calculate.setdueDate("");
-    //     console.log(`Clear Round `);
-    // }
+    
       }
 
     }
