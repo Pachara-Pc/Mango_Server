@@ -4,7 +4,7 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
-const {queueValve,getValveNumber,setStart,getPump} = require("./Control/Controlvalve")
+const {queueValve,getValveNumber,setStart,getPump,setPump} = require("./Control/Controlvalve")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -71,6 +71,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
         const  Minute =  req.params.Time;
         queueValve(parseInt(Minute));
         setStart(1);
+        setPump();
         console.log(Minute);
         res.send("")
         

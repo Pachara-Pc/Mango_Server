@@ -32,11 +32,12 @@ function queueValve(countDown){
     console.log(`valve ${i} : ${H}:${Math.floor(M)}:${1}`);
     
     timeStop.push(`${H}:${Math.floor(M)}:${30}`);
+     if(i===4){
+         timeStop.push(`${H}:${Math.floor(M)}:${20}`);
+      console.log(timeStop);
+       }
     i++;
-      if(i===4){
-        timeStop.push(`${H}:${Math.floor(M)}:${20}`);
-        console.log(timeStop);
-      }
+      
     }
     
 
@@ -49,10 +50,13 @@ setInterval(() => {
     if(start == 1){
         console.log(`on Valve ${Valve}`);
         ValveNumber[Valve-1] = 1;
-        pump = 1;
+
+       
+
         console.log(`pump ON = ${pump}`);
         if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
           pump = 0;
+
           console.log(`pump OFF = ${pump}`);
         }
 
@@ -99,6 +103,10 @@ function getPump(){
   return pump;
 }
 
+function setPump(set) {
+  pump = 1;
+}
+
 function setStart(set){
     start = set;
 }
@@ -106,5 +114,5 @@ function setStart(set){
 
 
 module.exports ={
-    queueValve,getValveNumber,setStart,getPump
+    queueValve,getValveNumber,setStart,getPump,setPump
 }
