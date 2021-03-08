@@ -47,6 +47,7 @@ setInterval(() => {
     if(start == 1){
         console.log(`on Valve ${Valve}`);
         ValveNumber[Valve-1] = 1;
+        pump = 1;
         
         if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
           pump = 0;
@@ -55,7 +56,7 @@ setInterval(() => {
 
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[Valve-1]}`){
         ValveNumber[Valve-1] = 0;
-        pump = 1;
+        
         console.log(`off Valve ${Valve}`);
         Valve++;
       }
