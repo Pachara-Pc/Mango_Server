@@ -35,7 +35,7 @@ function queueValve(countDown){
     i++;
       if(i===4){
         timeStop.push(`${H}:${Math.floor(M)}:${20}`);
-        console.log("timeStop");
+        console.log(timeStop);
       }
     }
     
