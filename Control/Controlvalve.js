@@ -70,12 +70,13 @@ setInterval(() => {
       }
       
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[5]}`){
+        console.log("update Zone reset IR");
         Calculate.setdayCountinValve(Calculate.getcountpump());
     Calculate.pluscountpump(1);
     Calculate.setIrrigation(0)
 
     if(Calculate.getcountpump() == Calculate.getpump()){
-
+      console.log("rest All ");
         Calculate.setcountpump(0);
         Calculate.setcountday(0);
         Calculate.setcount(0);
