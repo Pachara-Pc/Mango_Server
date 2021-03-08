@@ -175,7 +175,7 @@ function calculateDate(inputDay){
 
     let due = new Date();
 
-    let D = due.getDay(), M = due.getMonth()+1, Y = due.getFullYear();
+    let D = due.getDate(), M = due.getMonth()+1, Y = due.getFullYear();
 
     if (M == 1 || M == 3 || M == 5 || M == 7 || M == 8 || M == 10 || M == 12) {
   
@@ -217,7 +217,8 @@ function calculateDate(inputDay){
         M++;
       }
     }
-    if(D == due.getDay()&& M == due.getMonth()+1 && Y == due.getFullYear()){
+
+    if(D == due.getDate()&& M == due.getMonth()+1 && Y == due.getFullYear()){
       return (``)
     }else{
       

@@ -4,7 +4,7 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
-const {queueValve,getValveNumber,setStart} = require("./Control/Controlvalve")
+const {queueValve,getValveNumber,setStart,getPump} = require("./Control/Controlvalve")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -82,29 +82,37 @@ app.get("/setStart",(req,res)=>{
         res.send(`0`);
 })
 
- app.get("/ValveControl_1/",(req,res)=>{
+app.get("/PumpControl",(req,res)=>{
+        res.send(`${getPump()}`);
+
+})
+
+
+app.get("/ValveControl_1/",(req,res)=>{
 
         
         res.send(`${getValveNumber(0)}`)
  })
 
- app.get("/ValveControl_2",(req,res)=>{
+
+app.get("/ValveControl_2",(req,res)=>{
 
         res.send(`${getValveNumber(1)}`)
  })
 
- app.get("/ValveControl_3",(req,res)=>{
+
+app.get("/ValveControl_3",(req,res)=>{
 
         res.send(`${getValveNumber(2)}`)
  })
 
- app.get("/ValveControl_4",(req,res)=>{
+app.get("/ValveControl_4",(req,res)=>{
 
         res.send(`${getValveNumber(3)}`)
  })
 
 
- app.get("/getRealtime",(req,res)=>{
+app.get("/getRealtime",(req,res)=>{
         const  Time = new Date()
         
         res.send(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`)
@@ -123,7 +131,6 @@ app.get("/ShowdueDate",(req,res)=>{
 
 setInterval(()=>{ 
         const Time = new Date();
-        
                 if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
 
                         if(Calculate.getRound_status() == false){

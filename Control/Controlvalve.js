@@ -1,4 +1,5 @@
 const Calculate = require("./Calculate")
+var pump = 0
 var ValveNumber = [0,0,0,0];
 var minTime = 0;
 var S = 0;
@@ -7,7 +8,7 @@ var start =0;
 var Valve =1;
 
 function queueValve(countDown){
-    var Time = new Date();
+    let Time = new Date();
     let H = Time.getHours() ;
     let M = Time.getMinutes();
 
@@ -23,15 +24,18 @@ function queueValve(countDown){
       M-=59;
       H+=1;
     }
+
     console.log("in while");
     }
     
 
     console.log(`valve ${i} : ${H}:${Math.floor(M)}:${1}`);
     
-    timeStop.push(`${H}:${Math.floor(M)}:${1}`);
+    timeStop.push(`${H}:${Math.floor(M)}:${30}`);
     i++;
-      
+      if(i===4){
+        timeStop.push(`${H}:${Math.floor(M)}:${20}`);
+      }
     }
     
 
@@ -44,14 +48,18 @@ setInterval(() => {
         console.log(`on Valve ${Valve}`);
         ValveNumber[Valve-1] = 1;
         
+        if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
+          pump = 0;
 
+        }
 
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[Valve-1]}`){
         ValveNumber[Valve-1] = 0;
+        pump = 1;
         console.log(`off Valve ${Valve}`);
         Valve++;
       }
-    
+      
       if(Valve === 5){
         start = 0;
         Valve = 1;
@@ -84,12 +92,16 @@ setInterval(() => {
 function getValveNumber(i){
     return ValveNumber[i];
 }
+function getPump(){
+  return pump;
+}
 
 function setStart(set){
     start = set;
 }
 
 
+
 module.exports ={
-    queueValve,getValveNumber,setStart
+    queueValve,getValveNumber,setStart,getPump
 }
