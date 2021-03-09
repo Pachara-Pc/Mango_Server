@@ -8,6 +8,7 @@ var start =0;
 var Valve =1;
 
 function queueValve(countDown){
+    timeStop = [];
     let Time = new Date();
     let H = Time.getHours() ;
     let M = Time.getMinutes();
@@ -62,6 +63,7 @@ setInterval(() => {
           console.log(`pump OFF = ${pump}`);
         }
 
+
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[Valve-1]}`){
         ValveNumber[Valve-1] = 0;
         
@@ -69,11 +71,24 @@ setInterval(() => {
         Valve++;
       }
       
+      if(Valve === 5){
+        console.log("Start Next Round");
+        start = 0;
+        Valve = 1;
+      }
+      
+    }
+    
+      console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}`);
+      
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[5]}`){
+
         console.log("update Zone reset IR");
         Calculate.setdayCountinValve(Calculate.getcountpump());
     Calculate.pluscountpump(1);
     Calculate.setIrrigation(0)
+    timeStop = [];
+    
 
     if(Calculate.getcountpump() == Calculate.getpump()){
       console.log("rest All ");
@@ -83,24 +98,13 @@ setInterval(() => {
         Calculate.setRound_status(true);
         Calculate.setdueDate("");
         console.log(`Clear Round `);
-    }
+      }
       }
 
-      if(Valve === 5){
-        start = 0;
-        Valve = 1;
-        
-        timeStop = [];
+     
 
-    
-      }
-
-    }
-    
-      console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}`);
       
-    
-}, 1000);
+}, 500);
 
 
 function getValveNumber(i){
