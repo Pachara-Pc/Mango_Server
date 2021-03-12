@@ -1,3 +1,4 @@
+const {updatefile} = require("./Writefile")
 var maxTemp = 0;            // อุณหภูมิสูงสุด
 var minTemp = 1000;         // อุญหภูมิต่ำสุด
 var DAP = 0;        
@@ -104,6 +105,8 @@ function Calculate_round_1() {
             
         //countday = 0;
         }
+        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
+ 
         maxTemp = 0;
         minTemp = 100000;
         rainDay = 0;
@@ -163,6 +166,10 @@ function Calculate_round_2() {
           // Control_V.setsend(true);
         //countday = 0;
         }
+        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
+        maxTemp = 0;
+        minTemp = 100000;
+        rainDay = 0;
 }
 
 function Timeopenvalve(){
