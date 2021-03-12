@@ -146,7 +146,7 @@ setInterval(()=>{
                        // console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
                 }
 
-             //   console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+               console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
 },1000)
 
 app.listen(PORT,'0.0.0.0',()=>{

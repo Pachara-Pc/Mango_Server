@@ -79,7 +79,7 @@ setInterval(() => {
       
     }
     
-      console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}`);
+      //console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}`);
       
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[5]}`){
 
