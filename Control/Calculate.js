@@ -107,7 +107,7 @@ function Calculate_round_1() {
             
         //countday = 0;
         }
-        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
+        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(3)},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
  
         maxTemp = 0;
         minTemp = 100000;
@@ -169,7 +169,7 @@ function Calculate_round_2() {
           // Control_V.setsend(true);
         //countday = 0;
         }
-        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
+        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(3)},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
         maxTemp = 0;
         minTemp = 100000;
         rainDay = 0;
