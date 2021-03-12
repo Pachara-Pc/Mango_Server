@@ -47,6 +47,7 @@ const findMax_Min = (Temp)=>{
 }
 
 function Calculate_round_1() {
+  const Time = new Date();
     ET_Day = P * ((0.46 * (( maxTemp + minTemp) / 2)) + 8);
     
    console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`);
@@ -114,6 +115,7 @@ function Calculate_round_1() {
 }
 
 function Calculate_round_2() {
+  const Time = new Date();
     ET_Day = P*((0.46 * (( maxTemp+minTemp )/2) + 8 )) ;
     console.log(ET_Day);
     etInterval[count] = ET_Day.toFixed(2)
