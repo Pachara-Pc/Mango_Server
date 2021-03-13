@@ -104,7 +104,7 @@ function Calculate_round_1() {
             console.log(SumrainInterval);
            // console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
-            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2)*Area;
+            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
 
             console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
             
@@ -166,7 +166,7 @@ function Calculate_round_2() {
             }
             console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
-            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2)*Area;
+            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
 
             console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
 
