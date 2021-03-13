@@ -96,17 +96,17 @@ function Calculate_round_1() {
 
             console.log(Irrigation);
 
-            console.log(rainInterval);
+            
                //หาค่าน้ำฝน ตามวันที่วาล์วต้องจ่ายน้ำ
           for(let i=0;i<countday;i++){
                      SumrainInterval+=parseFloat(rainInterval[i]);
             }
-
+            console.log(SumrainInterval);
            // console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
-            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
+            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2)*Area;
 
-            console.log(`Irrigation = ${Irrigation} Area = ${countpump}` );
+            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
             
 
             valvestatus = false;
@@ -164,10 +164,11 @@ function Calculate_round_2() {
           for(let i=0;i<dayConfig;i++){
               SumrainInterval+=parseFloat(rainInterval[i]);
             }
-      
+            console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
-            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
-            console.log(`Irrigation = ${Irrigation} Area = ${Area}` );
+            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2)*Area;
+
+            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
 
             //console.log(Irrigation);
             //ส่งสถานะไปให้วาล์วปล่อยน้ำ
