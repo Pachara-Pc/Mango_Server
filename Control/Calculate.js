@@ -101,7 +101,8 @@ function Calculate_round_1() {
           for(let i=0;i<countday;i++){
                      SumrainInterval+=parseFloat(rainInterval[i]);
             }
-            console.log(SumrainInterval);
+            console.log(`Sumrain =  ${SumrainInterval}`);
+
            // console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
             Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
@@ -283,6 +284,7 @@ function getIrrigation(){
 
 function setSumrainInterval(set) {
     SumrainInterval = set;
+    console.log(`Set Sumrain =  ${SumrainInterval}`);
 }
 
 function setIrrigation(set){
