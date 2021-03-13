@@ -62,7 +62,7 @@ function Calculate_round_1() {
         dueDate = calculateDate(dayConfig)
     }
 
-    
+    console.log(rainInterval);
 
     for(let i =0;i<pump;i++){
         dayCountinValve[i] +=1;
@@ -95,8 +95,8 @@ function Calculate_round_1() {
             }
 
             console.log(Irrigation);
-            
-            console.log(SumrainInterval);
+
+            console.log(rainInterval);
                //หาค่าน้ำฝน ตามวันที่วาล์วต้องจ่ายน้ำ
           for(let i=0;i<countday;i++){
                      SumrainInterval+=parseFloat(rainInterval[i]);
