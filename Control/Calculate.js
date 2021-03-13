@@ -30,7 +30,9 @@ var countZone = 0 ;
 var dueDate = "";  //บอกวันที่จะจ่ายน้ำล่วงหน้า
 
 const updateRainday = (Rain)=>{
+  console.log(`Rain : ${Rain} `);
     rainDay+=Rain;
+    console.log(`rainDay : ${rainDay} `);
 }
 const dateOnvalve =(Day)=>{
     let day = new Date();
@@ -338,5 +340,5 @@ module.exports={
     setIrrigation,setSumrainInterval,setdayCountinValve,
     pluscountpump,getpump,getRound_status,setRound_status,setcountpump,setcount,
     setcountday,setvalvestatus,getArea,getpumpRate,setZone,getZone,
-    getcountzone,plusZone,setcountzone,getdueDate,setdueDate,Timeopenvalve
+    getcountzone,plusZone,setcountzone,getdueDate,setdueDate,Timeopenvalve,updateRainday
 }
