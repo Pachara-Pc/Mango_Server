@@ -47,6 +47,7 @@ app.get("/sendData/:value",(req,res)=>{
         console.log(`Temp [0] = ${ dataArray[0]} `);
         res.send(`Updated`);             
 }else{
+        console.log(`Wait Watering Data = ${ dataArray} `);
         res.send(`Wait Watering`); 
 }
 })
