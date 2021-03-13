@@ -108,7 +108,7 @@ function Calculate_round_1() {
             Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
 
             console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
-            
+            SumrainInterval=0;
 
             valvestatus = false;
             
@@ -173,7 +173,7 @@ function Calculate_round_2() {
 
             //console.log(Irrigation);
             //ส่งสถานะไปให้วาล์วปล่อยน้ำ
-            
+            SumrainInterval=0;
             valvestatus = false;
           // Control_V.setsend(true);
         //countday = 0;
