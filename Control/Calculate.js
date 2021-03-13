@@ -71,11 +71,14 @@ function Calculate_round_1() {
         console.log(`dayCountinValve : ${dayCountinValve[1]}`);
         console.log(`dayCountinValve : ${dayCountinValve[2]}`);
         console.log(`dayCountinValve : ${dayCountinValve[3]}`);
+
       for(let i=0;i<count;i++){
 
-        Sum +=parseInt(etInterval[i]);
+        Sum +=parseFloat(etInterval[i]);
         SumetInterval = Sum;
       }
+
+     
    
       //  console.log(SumetInterval);
       Sum = 0;
@@ -85,13 +88,15 @@ function Calculate_round_1() {
       if( countday >= dayConfig){
      
         console.log(etInterval);
-      
+     
          ///หาค่าความต้องการน้ำของพืช ตามวันที่วาล์วต้องจ่ายน้ำ
           for(let i=0;i<countday;i++){
                     Irrigation+=parseFloat(etInterval[i]);
             }
 
             console.log(Irrigation);
+            
+            console.log(SumrainInterval);
                //หาค่าน้ำฝน ตามวันที่วาล์วต้องจ่ายน้ำ
           for(let i=0;i<countday;i++){
                      SumrainInterval+=parseFloat(rainInterval[i]);
