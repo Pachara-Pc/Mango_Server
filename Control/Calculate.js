@@ -250,7 +250,7 @@ function calculateDate(inputDay){
     
   }
 
-
+console.log(showRain());
 function showRain(){
     let sum = 0;
     for(i=0;i<rainInterval.length;i++){
