@@ -20,8 +20,6 @@ app.get("/resetIrrigation/",(req,res)=>{
     Calculate.setdayCountinValve(Calculate.getcountpump());
     Calculate.pluscountpump(1);
     Calculate.setIrrigation(0)
-  
-
     if(Calculate.getcountpump() == Calculate.getpump()){
 
         Calculate.setcountpump(0);
@@ -118,16 +116,21 @@ app.get("/ValveControl_4",(req,res)=>{
         res.send(`${getValveNumber(3)}`)
  })
 
+app.get("/showRain",(req,res)=>{
+        res.send(Calculate.showRain())
+})
 
 app.get("/getRealtime",(req,res)=>{
         const  Time = new Date()
-        
         res.send(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`)
-        console.log(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`);
-
+       // console.log(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`);
  })
 
-
+ app.get("/getRealdate",(req,res)=>{
+        const  date = new Date()
+        res.send(`${date.getDate()>10?date.getDate():`0${date.getDate()}`}/${date.getMonth()+1>10?date.getMonth():`0${date.getMonth()}`}/${date.getFullYear()+543}`);
+       // console.log(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`);
+ })
 
 
 
