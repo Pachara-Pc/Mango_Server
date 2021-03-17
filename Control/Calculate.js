@@ -3,7 +3,7 @@ const {updatefile} = require("./Writefile")
 var maxTemp = 0;            // อุณหภูมิสูงสุด
 var minTemp = 1000;         // อุญหภูมิต่ำสุด
 var DAP = 0;        
-var P =0.27;                
+var P = [0.26,0.26,0.27,0.28,0.29,0.29,0.29,0.28,0.28,0.27,0.26,0.25];                
 var ET_Day =0;              // สัมประสิทธิ์ความต้องการน้ำของพิช
 var etInterval=[]           // ผลรวมสัมประสิทธิ์ความต้องการน้ำของพิช
 var rainInterval=[]         // ผลรวมปริมาณน้ำฝน
@@ -28,7 +28,7 @@ var Round_Zone = false ;
 var Zone = 1 ;
 var countZone = 0 ;
 var dueDate = "";  //บอกวันที่จะจ่ายน้ำล่วงหน้า
-var Kc = 0;
+var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 
 
 const updateRainday = (Rain)=>{
@@ -52,7 +52,7 @@ const findMax_Min = (Temp)=>{
 
 function Calculate_round_1() {
   const Time = new Date();
-    ET_Day = P * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) *Kc ;
+    ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
     
     console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
 
@@ -131,7 +131,7 @@ function Calculate_round_1() {
 
 function Calculate_round_2() {
   const Time = new Date();
-    ET_Day = P*((0.46 * (( maxTemp+minTemp )/2) + 8 )) ;
+    ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
     console.log(ET_Day);
     etInterval[count] = ET_Day.toFixed(2)
     rainInterval[count] = rainDay
