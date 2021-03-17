@@ -34,11 +34,11 @@ function queueValve(countDown){
 
     console.log(`valve ${i} : ${H}:${Math.floor(M)}:${1}`);
     
-    timeStop.push(`${H}:${Math.floor(M)}:${30}`);
-    timeStart.push(`${H}:${Math.floor(M)}:${20}`);
+    timeStop.push(`${H}:${Math.floor(M)}:${50}`);
+    timeStart.push(`${H}:${Math.floor(M)}:${40}`);
 
      if(i===4){
-         timeStop.push(`${H}:${Math.floor(M)}:${20}`);
+         timeStop.push(`${H}:${Math.floor(M)}:${40}`);
          timeReset.push(`${H}:${Math.floor(M)}:${50}`);
       
       console.log(timeStart);
