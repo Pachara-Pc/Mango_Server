@@ -28,7 +28,7 @@ var Round_Zone = false ;
 var Zone = 1 ;
 var countZone = 0 ;
 var dueDate = "";  //บอกวันที่จะจ่ายน้ำล่วงหน้า
-
+var Kc = 0;
 
 
 const updateRainday = (Rain)=>{
@@ -52,14 +52,18 @@ const findMax_Min = (Temp)=>{
 
 function Calculate_round_1() {
   const Time = new Date();
-    ET_Day = P * ((0.46 * (( maxTemp + minTemp) / 2)) + 8);
+    ET_Day = P * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) *Kc ;
     
-   console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`);
+    console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
+
     etInterval[count] = ET_Day.toFixed(2)
     rainInterval[count] = rainDay
     count++;
     countday++;
+
+
     console.log(rainInterval);
+
     if(count == 1){
         dueDate = calculateDate(dayConfig)
     }
@@ -85,6 +89,7 @@ function Calculate_round_1() {
       //  console.log(SumetInterval);
       Sum = 0;
       Apx = ((SumetInterval/count)*(dayConfig+countpump));
+
       //console.log(`Apx = ${Apx}`);
       console.log(`CountDay = ${countday}`);
       if( countday >= dayConfig){
