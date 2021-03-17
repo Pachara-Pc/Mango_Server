@@ -31,6 +31,8 @@ var dueDate = "";  //บอกวันที่จะจ่ายน้ำล�
 var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 
 
+
+
 const updateRainday = (Rain)=>{
   console.log(`Rain : ${Rain} `);
     rainDay+=Rain;
@@ -53,7 +55,8 @@ const findMax_Min = (Temp)=>{
 function Calculate_round_1() {
   const Time = new Date();
     ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
-    
+    // console.log(P[Time.getMonth()]);
+    // console.log(Kc[Time.getMonth()]);
     console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
 
     etInterval[count] = ET_Day.toFixed(2)

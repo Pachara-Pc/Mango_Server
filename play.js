@@ -1,13 +1,11 @@
+let A  = []
+let S = []
 
-let c = [];
-let s  = 1;
-function show(){
-    let sum = 0;
-   for(i=0;i<c.length;i++){
-    sum+=parseFloat(c[i])
-   }
-
-   return sum +s
+for(i=0;i<4;i++){
+    A.push(1);
+    A.push(2);
 }
+A.push(10)
 
-console.log(show());
+
+console.log(A);

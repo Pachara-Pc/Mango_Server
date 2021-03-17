@@ -4,6 +4,8 @@ var ValveNumber = [0,0,0,0];
 var minTime = 0;
 var S = 0;
 var timeStop = [];
+var timeStart = [];
+var timeReset = [];
 var start =0;
 var Valve =1;
 
@@ -33,12 +35,17 @@ function queueValve(countDown){
     console.log(`valve ${i} : ${H}:${Math.floor(M)}:${1}`);
     
     timeStop.push(`${H}:${Math.floor(M)}:${30}`);
+    timeStart.push(`${H}:${Math.floor(M)}:${20}`);
+
      if(i===4){
          timeStop.push(`${H}:${Math.floor(M)}:${20}`);
-
-         timeStop.push(`${H}:${Math.floor(M)}:${50}`);
+         timeReset.push(`${H}:${Math.floor(M)}:${50}`);
+      
+      console.log(timeStart);
       console.log(timeStop);
+      console.log(timeReset);
        }
+       
     i++;
       
     }
@@ -52,18 +59,27 @@ setInterval(() => {
 
     if(start == 1){
         console.log(`on Valve ${Valve}`);
+        
         ValveNumber[Valve-1] = 1;
+
+
+        //เปิดวาล์วถัดไป
+        if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStart[Valve-1]}`){
+          ValveNumber[Valve] = 1;
+        }
+
 
        
 
         console.log(`pump ON = ${pump}`);
+        //ปิดปั้มน้ำ
         if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
           pump = 0;
 
           console.log(`pump OFF = ${pump}`);
         }
 
-
+        //ปิดวาล์ว
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[Valve-1]}`){
         ValveNumber[Valve-1] = 0;
         
@@ -88,6 +104,8 @@ setInterval(() => {
     Calculate.pluscountpump(1);
     Calculate.setIrrigation(0)
     timeStop = [];
+    timeStart = []
+    timeReset = []
     
 
     if(Calculate.getcountpump() == Calculate.getpump()){

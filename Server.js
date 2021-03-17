@@ -61,7 +61,8 @@ app.get("/CheckIrrigation/",(req,res)=>{
         res.send(`${Calculate.getIrrigation()}`);
 })
 
- app.get("/Timeopenvalve",(req,res)=>{
+
+app.get("/Timeopenvalve",(req,res)=>{
 
         if(Calculate.getIrrigation != 0){
                 res.send(Calculate.Timeopenvalve());
@@ -75,7 +76,7 @@ app.get("/CheckIrrigation/",(req,res)=>{
         const  Minute =  req.params.Time;
         queueValve(parseInt(Minute));
         setStart(1);
-        setPump();
+        setPump(1);
         console.log(Minute);
         res.send("")
         
