@@ -122,7 +122,7 @@ app.get("/showRain",(req,res)=>{
 
 app.get("/getRealtime",(req,res)=>{
         const  Time = new Date()
-        res.send(`${Time.getHours()>10?Time.getHours():`0${Time.getMinutes()}`}:${Time.getMinutes()>10?Time.getMinutes():`0${Time.getMinutes()}`}:${Time.getSeconds()>10?Time.getSeconds():`0${Time.getSeconds()}`}`)
+        res.send(`${Time.getHours()>10?`${Time.getHours()}`:"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`)
        // console.log(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`);
  })
 
