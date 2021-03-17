@@ -97,7 +97,7 @@ setInterval(() => {
     
       //console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}`);
       
-      if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[5]}`){
+      if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
 
         console.log("update Zone reset IR");
         Calculate.setdayCountinValve(Calculate.getcountpump());
