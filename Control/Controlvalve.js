@@ -109,6 +109,8 @@ setInterval(() => {
     timeStart = []
     timeReset = []
     
+    Notify = true;
+    setTimeout(()=>{Notify = false},40000)
 
     if(Calculate.getcountpump() == Calculate.getpump()){
       console.log("rest All ");
@@ -117,8 +119,7 @@ setInterval(() => {
         Calculate.setcount(0);
         Calculate.setRound_status(true);
         Calculate.setdueDate("");
-        Notify = true;
-        setTimeout(()=>{Notify = false},40000)
+
         console.log(`Clear Round `);
       }
       }
