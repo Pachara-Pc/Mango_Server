@@ -118,7 +118,7 @@ setInterval(() => {
         Calculate.setRound_status(true);
         Calculate.setdueDate("");
         Notify = true;
-        setTimeout(()=>{Notify = false},2000)
+        setTimeout(()=>{Notify = false},20000)
         console.log(`Clear Round `);
       }
       }
