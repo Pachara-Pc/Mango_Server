@@ -8,7 +8,7 @@ var timeStart = [];
 var timeReset = [];
 var start =0;
 var Valve =1;
-
+var Notify = false
 function queueValve(countDown){
     timeStop = [];
     let Time = new Date();
@@ -58,6 +58,7 @@ setInterval(() => {
     let Time = new Date();
 
     if(start == 1){
+      Notify = false;
         console.log(`on Valve ${Valve}`);
         
         ValveNumber[Valve-1] = 1;
@@ -99,6 +100,7 @@ setInterval(() => {
       
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeReset[0]}`){
 
+      
         console.log("update Zone reset IR");
         Calculate.setdayCountinValve(Calculate.getcountpump());
     Calculate.pluscountpump(1);
@@ -115,6 +117,7 @@ setInterval(() => {
         Calculate.setcount(0);
         Calculate.setRound_status(true);
         Calculate.setdueDate("");
+        Notify = true;
         console.log(`Clear Round `);
       }
       }
@@ -140,8 +143,10 @@ function setStart(set){
     start = set;
 }
 
-
+function checkNotify(){
+  return Notify;
+}
 
 module.exports ={
-    queueValve,getValveNumber,setStart,getPump,setPump
+    queueValve,getValveNumber,setStart,getPump,setPump,checkNotify
 }

@@ -1,11 +1,12 @@
-let A  = []
-let S = []
+let i =0
+const finishJob = setInterval(() => {
+    i++
+    if(i == 5){
+        console.log("finish");
+        clearInterval(finishJob);
+        i = 0;
+    }
 
-for(i=0;i<4;i++){
-    A.push(1);
-    A.push(2);
-}
-A.push(10)
 
-
-console.log(A);
+    console.log(i);
+  }, 1000);

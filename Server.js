@@ -4,7 +4,7 @@ const app =express()
 const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
-const {queueValve,getValveNumber,setStart,getPump,setPump} = require("./Control/Controlvalve")
+const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -33,6 +33,11 @@ app.get("/resetIrrigation/",(req,res)=>{
     console.log(`reseted  Irrigation  = 0`);
     res.send(`reseted  Irrigation  = 0`);
 })
+
+app.get("/",(req,res)=>{
+
+})
+
 
 app.get("/sendData/:value",(req,res)=>{
 
@@ -72,8 +77,9 @@ app.get("/Timeopenvalve",(req,res)=>{
         
  })
 
- app.get("/getTimeonValve/:Time",(req,res)=>{
+app.get("/getTimeonValve/:Time",(req,res)=>{
         const  Minute =  req.params.Time;
+       // if(Minute<4){}
         queueValve(parseInt(Minute));
         setStart(1);
         setPump(1);
@@ -82,10 +88,14 @@ app.get("/Timeopenvalve",(req,res)=>{
         
  })
 
+app.get("/ChangeModeControl",(req,res)=>{
 
-app.get("/setStart",(req,res)=>{
+ })
+
+
+app.get("/checkNotify",(req,res)=>{
         
-        res.send(`0`);
+        res.send(`${checkNotify()}`);
 })
 
 app.get("/PumpControl",(req,res)=>{
@@ -143,6 +153,7 @@ app.get("/ShowdueDate",(req,res)=>{
 
 setInterval(()=>{ 
         const Time = new Date();
+
                 if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
 
                         if(Calculate.getRound_status() == false){
