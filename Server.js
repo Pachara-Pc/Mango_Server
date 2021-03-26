@@ -188,7 +188,7 @@ app.get("/ShowdueDate",(req,res)=>{
         res.send(Calculate.getdueDate())
 })
 
-app.get("/ControlServer:status",(req,res)=>{
+app.get("/ControlServer=:status",(req,res)=>{
         const  status =  req.params.status;
         console.log(status);
         if(status === "ON"){
