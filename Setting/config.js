@@ -53,6 +53,6 @@ module.exports = {
     Hour,   
     Minute,
     Second,
-    setTime,setpumpRate,setArea,setTotalPump,setdayConfig,show_seting,updateConfig
+    setTime,setpumpRate,setArea,setTotalPump,setdayConfig,show_seting
 
 }
