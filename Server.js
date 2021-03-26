@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require("express")
 const bodyParser = require("body-parser")
 const app =express()
@@ -5,9 +6,10 @@ const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
-
+const {updateConfig,show_seting,setTime,setpumpRate,setArea,setTotalPump,setdayConfig} = require("./Setting/config")
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+
 
 app.get("/", (req,res) =>{
             res.send('hello server  ')
@@ -77,6 +79,32 @@ app.get("/Timeopenvalve",(req,res)=>{
         
  })
 
+app.get("/Setting/dayConfig=:dayConfig&Pump=:pump&pumpRate=:pRate&Area=:area&Time=:time",(req,res)=>{
+ 
+
+        let setting = `${req.params.dayConfig},${req.params.pump},${req.params.pRate},${req.params.area},${req.params.time}`
+        
+        fs.writeFile('./Setting/Config.txt',setting,()=>{
+               
+                console.log("Write file update");
+                
+        });
+
+        fs.readFile('./Setting/Config.txt', function(err, data) {
+                // const A = data.toString().split(",")
+              const value = data.toString().split(",");
+                setdayConfig(value[0]);
+                setTotalPump(value[1]);
+                setpumpRate(value[2]);
+                setArea(value[3])
+                setTime(value[4])
+              console.log("update ");
+        res.send(`update Config file  ====>   ${show_seting()}`)
+            });
+
+     
+})
+
 app.get("/getTimeonValve/:Time",(req,res)=>{
         const  Minute =  req.params.Time;
        // if(Minute<4){}
@@ -85,6 +113,15 @@ app.get("/getTimeonValve/:Time",(req,res)=>{
         setPump(1);
         console.log(Minute);
         res.send("")
+        
+ })
+
+ app.get("/:test&:test1",(req,res)=>{
+        const  Minute =  req.params.test;
+        const  Minute1 =  req.params.test1;
+       // if(Minute<4){}
+       
+        res.send(`${Minute}`)
         
  })
 
@@ -150,6 +187,8 @@ app.get("/ShowdueDate",(req,res)=>{
         
         res.send(Calculate.getdueDate())
 })
+
+
 
 setInterval(()=>{ 
         const Time = new Date();

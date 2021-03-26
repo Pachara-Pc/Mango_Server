@@ -41,9 +41,10 @@ function queueValve(countDown){
          timeStop.push(`${H}:${Math.floor(M)}:${40}`);
          timeReset.push(`${H}:${Math.floor(M)}:${50}`);
       
-      console.log(timeStart);
-      console.log(timeStop);
-      console.log(timeReset);
+      // console.log(timeStart);
+      // console.log(timeStop);
+      // console.log(timeReset);
+
        }
        
     i++;
@@ -59,7 +60,7 @@ setInterval(() => {
 
     if(start == 1){
       Notify = false;
-        console.log(`on Valve ${Valve}`);
+      //console.log(`on Valve ${Valve}`);
         
         ValveNumber[Valve-1] = 1;
 
@@ -72,24 +73,24 @@ setInterval(() => {
 
        
 
-        console.log(`pump ON = ${pump}`);
+      //console.log(`pump ON = ${pump}`);
         //ปิดปั้มน้ำ
         if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
           pump = 0;
 
-          console.log(`pump OFF = ${pump}`);
+      //console.log(`pump OFF = ${pump}`);
         }
 
         //ปิดวาล์ว
       if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[Valve-1]}`){
         ValveNumber[Valve-1] = 0;
         
-        console.log(`off Valve ${Valve}`);
+      //  console.log(`off Valve ${Valve}`);
         Valve++;
       }
       
       if(Valve === 5){
-        console.log("Start Next Round");
+        //console.log("Start Next Round");
         start = 0;
         Valve = 1;
       }
@@ -103,17 +104,17 @@ setInterval(() => {
       
         console.log("update Zone reset IR");
         Calculate.setdayCountinValve(Calculate.getcountpump());
-    Calculate.pluscountpump(1);
-    Calculate.setIrrigation(0)
-    timeStop = [];
-    timeStart = []
-    timeReset = []
+        Calculate.pluscountpump(1);
+        Calculate.setIrrigation(0)
+        timeStop = [];
+        timeStart = []
+        timeReset = []
     
     Notify = true;
     setTimeout(()=>{Notify = false},40000)
 
     if(Calculate.getcountpump() == Calculate.getpump()){
-      console.log("rest All ");
+        console.log("rest All ");
         Calculate.setcountpump(0);
         Calculate.setcountday(0);
         Calculate.setcount(0);
@@ -152,3 +153,4 @@ function checkNotify(){
 module.exports ={
     queueValve,getValveNumber,setStart,getPump,setPump,checkNotify
 }
+
