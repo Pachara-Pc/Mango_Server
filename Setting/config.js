@@ -61,21 +61,21 @@ function getpumpRate (){
     return pumpRate
 }
 
-function getHour (){
+function getTimehour(){
     return Hour
 }
 
-function getMinute (){
+function getTimeninute(){
     return Minute
 }
 
-function getSecond (){
+function getTimesecond(){
     return Second
 }
 
 module.exports = {
     getdayConfig,getTotalpump,getArea,getpumpRate,  
-    getHour,getMinute,getSecond,setTime,
+    getTimehour,getTimeninute,getTimesecond,setTime,
     setpumpRate,setArea,setTotalPump,setdayConfig,show_seting
 
 }
