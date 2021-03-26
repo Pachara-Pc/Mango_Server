@@ -190,6 +190,7 @@ app.get("/ShowdueDate",(req,res)=>{
 
 app.get("/ControlServer:status",(req,res)=>{
         const  status =  req.params.status;
+        console.log(status);
         if(status === "ON"){
                 StatusServer = true
                 res.send(`Server ON`)
