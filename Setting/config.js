@@ -14,7 +14,7 @@ const setdayConfig = (set) => {
 }
 
 const setTotalPump = (set) => {
-    pump = parseFloat(set);
+    pump = parseInt(set);
 }
 
 const setArea = (set) => {
@@ -22,7 +22,7 @@ const setArea = (set) => {
 }
 
 const setpumpRate = (set) => {
-    pumpRate = parseFloat(set);
+    pumpRate = parseInt(set);
 }
 
 
@@ -36,6 +36,7 @@ const setTime = (set) => {
 
 
 function show_seting() {
+  
     return (`
 dayConfig = ${dayConfig}
 pump = ${pump}
@@ -44,15 +45,37 @@ pumpRate = ${pumpRate}
 Time = ${Hour}:${Minute}:${Second}`);
 }
 
+function getdayConfig (){
+    return dayConfig
+}
+
+function getArea (){
+    return Area
+}
+
+function getTotalpump(){
+    return pump
+}
+
+function getpumpRate (){
+    return pumpRate
+}
+
+function getHour (){
+    return Hour
+}
+
+function getMinute (){
+    return Minute
+}
+
+function getSecond (){
+    return Second
+}
 
 module.exports = {
-    dayConfig,
-    pump,
-    Area,  //ตารางเมตร
-    pumpRate,  
-    Hour,   
-    Minute,
-    Second,
-    setTime,setpumpRate,setArea,setTotalPump,setdayConfig,show_seting
+    getdayConfig,getTotalpump,getArea,getpumpRate,  
+    getHour,getMinute,getSecond,setTime,
+    setpumpRate,setArea,setTotalPump,setdayConfig,show_seting
 
 }

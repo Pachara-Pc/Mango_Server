@@ -1,4 +1,4 @@
-const config = require("../Setting/config")
+const {getdayConfig,getArea,getpumpRate,getTotalpump} = require("../Setting/config")
 const {updatefile} = require("./Writefile")
 var maxTemp = 0;            // อุณหภูมิสูงสุด
 var minTemp = 1000;         // อุญหภูมิต่ำสุด
@@ -13,17 +13,17 @@ var dayCountinValve =[0,0,0,0,0];
 var Apx = 0;                // ค่่าโดยประมาณของความต้องการน้ำ
 var Sum =0;                 
 var SumetInterval =0;       // ผลรวมมประสิทธิ์ความต้องการน้ำของพิช เพื่อใช้ในการคำนวณค่า Apx
-var dayConfig = config.dayConfig;           // วันที่เมือครบรอบจ่ายน้ำ    Config
+//var getdayConfig() = getgetdayConfig()();           // วันที่เมือครบรอบจ่ายน้ำ    Config
 var Irrigation =0;          // ความสูงของปริมาณน้ำ
-var Area = config.Area;               // พิ้นที่  Config
+//var getArea() = getgetArea()();               // พิ้นที่  Config
 var valvestatus = true;    // สถานะของวาล์วน้ำ
 var rainDay=0;              // ปริมาณน้ำฝนรายวัน
-var pump = config.pump ;              // จำนวนปั้ม ในที่นี้หมายถึงโซนการจ่ายน้ำ โซนละ 4 ปั้ม Config
+//var pump = getTotalpump() ;              // จำนวนปั้ม ในที่นี้หมายถึงโซนการจ่ายน้ำ โซนละ 4 ปั้ม Config
 var countpump = 0;          // จำนวนวาล์วที่นับใช้ในการควบคุมแต่ละวาล์ว
 var Round_status = false;   // ค่าที่ใช้ในการเช็คว่าผ่านการให้น้ำรอบแรกไปหริอยัง
 var SumrainInterval = 0;    // ผลรวมประมาณน้ำผล
 var Ready = false;          // เช็คว่ามี
-var pumpRate = config.pumpRate    ;      // อัตราการจ่ายน้ำของปั้ม
+//var getpumpRate() = getgetpumpRate()();      // อัตราการจ่ายน้ำของปั้ม
 var Round_Zone = false ;
 var Zone = 1 ;
 var countZone = 0 ;
@@ -31,7 +31,15 @@ var dueDate = "";  //บอกวันที่จะจ่ายน้ำล�
 var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 
 
-
+// setInterval(()=>{
+//   console.log(`
+//   in  Calculate file
+//   getdayConfig() = ${getdayConfig()}
+//   pump = ${getTotalpump()}
+//   getArea() = ${getArea()}
+//   getpumpRate() = ${getpumpRate()}
+//  `);
+// },1000);
 
 const updateRainday = (Rain)=>{
   console.log(`Rain : ${Rain} `);
@@ -53,6 +61,14 @@ const findMax_Min = (Temp)=>{
 }
 
 function Calculate_round_1() {
+  console.log(`
+  getdayConfig() = ${getdayConfig()}
+  pump = ${getTotalpump()}
+  getArea() = ${getArea()}
+  getpumpRate() = ${getpumpRate()}
+  `);
+
+
   const Time = new Date();
     ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
     console.log(P[Time.getMonth()]);
@@ -68,12 +84,12 @@ function Calculate_round_1() {
     console.log(rainInterval);
 
     if(count == 1){
-        dueDate = calculateDate(dayConfig)
+        dueDate = calculateDate(getdayConfig())
     }
 
     
 
-    for(let i =0;i<pump;i++){
+    for(let i =0;i<getTotalpump();i++){
         dayCountinValve[i] +=1;
       }
         console.log(`dayCountinValve : ${dayCountinValve[0]}`);
@@ -91,11 +107,11 @@ function Calculate_round_1() {
    
       //  console.log(SumetInterval);
       Sum = 0;
-      Apx = ((SumetInterval/count)*(dayConfig+countpump));
+      Apx = ((SumetInterval/count)*(getdayConfig()+countpump));
 
       //console.log(`Apx = ${Apx}`);
       console.log(`CountDay = ${countday}`);
-      if( countday >= dayConfig){
+      if( countday >= getdayConfig()){
      
         console.log(etInterval);
      
@@ -117,7 +133,7 @@ function Calculate_round_1() {
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
             Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
 
-            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
+            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} getArea() = ${countpump}` );
             SumrainInterval=0;
 
             valvestatus = false;
@@ -142,10 +158,10 @@ function Calculate_round_2() {
     countday++;
     console.log(rainInterval);
     if(dayCountinValve[0] ==1){
-        dueDate = calculateDate(dayConfig);
+        dueDate = calculateDate(getdayConfig());
     }
 
-    for(let i =0;i<pump;i++){
+    for(let i =0;i<getTotalpump();i++){
         dayCountinValve[i] +=1;
       }
 
@@ -160,26 +176,26 @@ function Calculate_round_2() {
         SumetInterval = Sum;
       }
       Sum = 0;
-      Apx = ((SumetInterval/count)*(dayConfig+countpump));
+      Apx = ((SumetInterval/count)*(getdayConfig()+countpump));
       console.log(`CountDay = ${countday}`);
-      if((dayConfig == dayCountinValve[0])||(dayConfig == dayCountinValve[1])||(dayConfig == dayCountinValve[2])||(dayConfig == dayCountinValve[3])){
+      if((getdayConfig() == dayCountinValve[0])||(getdayConfig() == dayCountinValve[1])||(getdayConfig() == dayCountinValve[2])||(getdayConfig() == dayCountinValve[3])){
 
         console.log(etInterval);
 
         ///หาค่าความต้องการน้ำของพืช ตามวันที่วาล์วต้องจ่ายน้ำ
-          for(let i=0;i<dayConfig;i++){
+          for(let i=0;i<getdayConfig();i++){
               Irrigation+=parseFloat(etInterval[i]);
             }
       
          //หาค่าน้ำฝน ตามวันที่วาล์วต้องจ่ายน้ำ
-          for(let i=0;i<dayConfig;i++){
+          for(let i=0;i<getdayConfig();i++){
               SumrainInterval+=parseFloat(rainInterval[i]);
             }
             console.log(SumrainInterval);
             //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
             Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
 
-            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} Area = ${countpump}` );
+            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} getArea() = ${countpump}` );
 
             //console.log(Irrigation);
             //ส่งสถานะไปให้วาล์วปล่อยน้ำ
@@ -196,8 +212,8 @@ function Calculate_round_2() {
 }
 
 function Timeopenvalve(){
-        let H = Math.floor(((Irrigation*Area)/pumpRate)/60)
-        let M = Math.floor(((Irrigation*Area)/pumpRate)-(60*H))
+        let H = Math.floor(((Irrigation*getArea())/getpumpRate())/60)
+        let M = Math.floor(((Irrigation*getArea())/getpumpRate())-(60*H))
         return `${H>=10?H:"0"+H}:${M>=10?M:"0"+M}`
 }
 
@@ -334,6 +350,7 @@ function getdueDate(){
     return dueDate;
 }
 function getpump(){
+ let pump = getTotalpump()
     return pump;
 }
 
@@ -353,20 +370,14 @@ function setRound_status(set){
     Round_status = set;
 }
 
-function getArea(){
-    return Area;
-}
 
-function getpumpRate(){
-    return pumpRate;
-}
 
 module.exports={
     findMax_Min,Calculate_round_1,Calculate_round_2,
     getIrrigation,getvalvestatus,getcountpump,minusIrrigation,
     setIrrigation,setSumrainInterval,setdayCountinValve,
     pluscountpump,getpump,getRound_status,setRound_status,setcountpump,setcount,
-    setcountday,setvalvestatus,getArea,getpumpRate,setZone,getZone,
+    setcountday,setvalvestatus,setZone,getZone,
     getcountzone,plusZone,setcountzone,getdueDate,setdueDate,
     Timeopenvalve,updateRainday,showRain
 }
