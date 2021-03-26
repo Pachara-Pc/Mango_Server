@@ -6,7 +6,7 @@ const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
-const {show_seting,setTime,setpumpRate,setArea,setTotalPump,setdayConfig} = require("./Setting/config")
+const {show_seting,getTimehour,getTimeninute,getTimesecond} = require("./Setting/config")
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.get("/", (req,res) =>{
             res.send('hello server  ')
 })
-
 
 
 app.get("/resetIrrigation/",(req,res)=>{
@@ -193,7 +192,7 @@ app.get("/ShowdueDate",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
 
-                if(Time.getMinutes() % 1 === 0 && Time.getSeconds() === 0 && Calculate.getIrrigation() === 0){
+                if(Time.getHours() === getHour() && Time.getMinutes() === getMinute() && Time.getSeconds() === getSecond() && Calculate.getIrrigation() === 0){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()

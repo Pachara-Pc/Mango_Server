@@ -28,9 +28,9 @@ const setpumpRate = (set) => {
 
 const setTime = (set) => {
     const Time = set.split(":");
-    Hour = Time[0];
-    Minute = Time[1];
-    Second = Time[2];
+    Hour = parseInt(Time[0]);
+    Minute = parseInt(Time[1]);
+    Second = parseInt(Time[2]);
 }
 
 
