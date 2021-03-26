@@ -207,7 +207,8 @@ app.get("/ControlServer=:status",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
 
-                if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
+                //if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
+                if( Time.getMinutes()% 1 == 0 && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
