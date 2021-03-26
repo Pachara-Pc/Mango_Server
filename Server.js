@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
 const {show_seting,getTimehour,getTimeninute,getTimesecond} = require("./Setting/config")
+var StatusServer = true;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -187,12 +188,25 @@ app.get("/ShowdueDate",(req,res)=>{
         res.send(Calculate.getdueDate())
 })
 
-
+app.get("/ControlServer:status",(req,res)=>{
+        const  StatusServer =  req.params.status;
+        if(status === "ON"){
+                StatusServer = true
+                res.send(`Server ON`)
+        }else if (status === "OFF"){
+                StatusServer = false
+                res.send(`Server OFF`)
+              
+        }else{
+                res.send(`Show Server Status = ${StatusServer?"ON":"OFF"}`)
+        }
+        
+})
 
 setInterval(()=>{ 
         const Time = new Date();
 
-                if(Time.getHours() === getHour() && Time.getMinutes() === getMinute() && Time.getSeconds() === getSecond() && Calculate.getIrrigation() === 0){
+                if(Time.getHours() === getHour() && Time.getMinutes() === getMinute() && Time.getSeconds() === getSecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
