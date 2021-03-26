@@ -6,7 +6,7 @@ const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
-const {show_seting,setdayConfig,getTimehour,getTimeninute,getTimesecond} = require("./Setting/config")
+const {show_seting,setdayConfig, setTotalPump,setpumpRate,setArea,setTime,getTimehour,getTimeninute,getTimesecond} = require("./Setting/config")
 var StatusServer = true;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -89,7 +89,7 @@ app.get("/Setting/dayConfig=:dayConfig&Pump=:pump&pumpRate=:pRate&Area=:area&Tim
                 console.log("Write file update");
                 
         });
-
+       
         fs.readFile('./Setting/Config.txt', function(err, data) {
                 // const A = data.toString().split(",")
               const value = data.toString().split(",");
