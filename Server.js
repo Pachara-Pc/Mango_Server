@@ -6,7 +6,7 @@ const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
-const {updateConfig,show_seting,setTime,setpumpRate,setArea,setTotalPump,setdayConfig} = require("./Setting/config")
+const {show_seting,setTime,setpumpRate,setArea,setTotalPump,setdayConfig} = require("./Setting/config")
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
