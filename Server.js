@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
 const {show_seting,setdayConfig, setTotalPump,setpumpRate,setArea,setTime,getTimehour,getTimeninute,getTimesecond} = require("./Setting/config")
-var StatusServer = true;
+var StatusServer = false;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
@@ -204,11 +204,15 @@ app.get("/ControlServer=:status",(req,res)=>{
         
 })
 
+app.get("/Showsetting",(req,res)=>{
+	res.send(`update Config file  ====>   ${show_seting()}`)
+})
+
 setInterval(()=>{ 
         const Time = new Date();
 
-                //if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-                if( Time.getMinutes()% 1 === 0 && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
+                if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
+        //        if( Time.getMinutes()% 1 === 0 && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
 
                         if(Calculate.getRound_status() == false){
                                 Calculate.Calculate_round_1()
@@ -224,6 +228,17 @@ setInterval(()=>{
 
                console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
 },1000)
+
+
+
+app.get('/Send/dataSensor',(req,res)=>{
+	  
+	console.log(req.query);
+
+	    res.send("finish");
+
+})
+
 
 app.listen(PORT,'0.0.0.0',()=>{
             console.log(`Server is running ${PORT}`);
