@@ -12,6 +12,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
 
+
+
+
+try{
+	        const data = fs.readFileSync('./Setting/Config.txt','utf8')
+
+	                        let text = data.split(',');
+	                        setdayConfig( parseInt(text[0]))
+	                        setTotalPump(parseInt(text[1]))
+	                        setpumpRate(parseInt(text[2]))
+	                        setArea( parseInt(text[3]))
+	                        setTime( text[4])
+}catch(err){
+	console.error(err);
+}
+
+
 app.get("/", (req,res) =>{
             res.send('hello server  ')
 })
