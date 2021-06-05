@@ -36,7 +36,8 @@ var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 var ET_Day_Sum = 0 ;
 var rainDay_Sum = 0 ;
 var CheckDayonValue = false;
-var Zone_Irrigation = []
+var Zone_Irrigation = [0,0]
+var Zone_rainDay_Sum = [0,0]
 /////////////
 
 const updateRainday = (Rain)=>{
@@ -75,6 +76,7 @@ function Calculate_round_1() {
     Irrigation = (ET_Day_Sum - rainDay_Sum ).toFixed(2)
 
     Zone_Irrigation[Zone-1] += Irrigation
+    Zone_rainDay_Sum[Zone-1] += rainDay_Sum
 
     console.log(Zone_Irrigation[Zone-1]);
 
@@ -152,11 +154,8 @@ function calculateDate(inputDay){
 
 
 function showRain(){
-    let sum = 0;
-    for(i=0;i<rainInterval.length;i++){
-     sum+=parseFloat(rainInterval[i])
-    }
-    return sum + rainDay
+    
+    return rainDay_Sum
   }
 
 function setcountzone (set){
@@ -259,6 +258,10 @@ function setZone_Irrigation(index,value){
   Zone_Irrigation[index] -= value
 }
 
+function getZone_rainDay_Sum(index){
+  return Zone_rainDay_Sum[index]
+}
+
 module.exports={
 
     findMax_Min,Calculate_round_1,
@@ -269,5 +272,6 @@ module.exports={
     getcountzone,plusZone,setcountzone,getdueDate,setdueDate,
     Timeopenvalve,updateRainday,showRain,
     getCheckDayonValue,setCheckDayonValue,
-    getZone_Irrigation,setZone_Irrigation
+    getZone_Irrigation,setZone_Irrigation,
+    getZone_rainDay_Sum
 }

@@ -159,7 +159,7 @@ app.get("/ValveControl_4",(req,res)=>{
  })
 
 app.get("/showRain",(req,res)=>{
-        res.send(`${Calculate.showRain()}`)
+        res.send(`${Calculate.getZone_rainDay_Sum(Calculate.getZone()-1)}`)
 })
 
 
