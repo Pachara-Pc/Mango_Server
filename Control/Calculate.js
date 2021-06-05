@@ -41,6 +41,14 @@ var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 //  `);
 // },1000);
 
+
+// new variable
+
+var ET_Day_Sum = 0 ;
+var rainDay_Sum = 0 ;
+
+/////////////
+
 const updateRainday = (Rain)=>{
   console.log(`Rain : ${Rain} `);
     rainDay+=Rain;
@@ -61,91 +69,26 @@ const findMax_Min = (Temp)=>{
 }
 
 function Calculate_round_1() {
-  console.log(`
-  getdayConfig() = ${getdayConfig()}
-  pump = ${getTotalpump()}
-  getArea() = ${getArea()}
-  getpumpRate() = ${getpumpRate()}
-  `);
-
+  maxTemp = 35
+  minTemp = 30
+  rainDay = 0.3
 
   const Time = new Date();
+
     ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
-    console.log(P[Time.getMonth()]);
-    console.log(Kc[Time.getMonth()]);
-    console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
-
-    etInterval[count] = ET_Day.toFixed(2)
-    rainInterval[count] = rainDay
-    count++;
-    countday++;
-
-
-    console.log(rainInterval);
-
-    if(count == 1){
-        dueDate = calculateDate(getdayConfig())
-    }
-
+    // console.log(P[Time.getMonth()]);
+    // console.log(Kc[Time.getMonth()]);
+    // console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
+    ET_Day_Sum += parseFloat(ET_Day.toFixed(2)) 
+    rainDay_Sum += parseFloat(rainDay.toFixed(2))
+    countday+=1
+    Irrigation = (ET_Day_Sum - rainDay_Sum ).toFixed(2)
     
-
-    for(let i =0;i<getTotalpump();i++){
-        dayCountinValve[i] +=1;
-      }
-        console.log(`dayCountinValve : ${dayCountinValve[0]}`);
-        console.log(`dayCountinValve : ${dayCountinValve[1]}`);
-        console.log(`dayCountinValve : ${dayCountinValve[2]}`);
-        console.log(`dayCountinValve : ${dayCountinValve[3]}`);
-
-      for(let i=0;i<count;i++){
-
-        Sum +=parseFloat(etInterval[i]);
-        SumetInterval = Sum;
-      }
-
-     
-   
-      //  console.log(SumetInterval);
-      Sum = 0;
-      Apx = ((SumetInterval/count)*(getdayConfig()+countpump));
-
-      //console.log(`Apx = ${Apx}`);
-      console.log(`CountDay = ${countday}`);
-      if( countday >= getdayConfig()){
-     
-        console.log(etInterval);
-     
-         ///หาค่าความต้องการน้ำของพืช ตามวันที่วาล์วต้องจ่ายน้ำ
-          for(let i=0;i<countday;i++){
-                    Irrigation+=parseFloat(etInterval[i]);
-            }
-
-            console.log(Irrigation);
-
-            
-               //หาค่าน้ำฝน ตามวันที่วาล์วต้องจ่ายน้ำ
-          for(let i=0;i<countday;i++){
-                     SumrainInterval+=parseFloat(rainInterval[i]);
-            }
-            console.log(`Sumrain =  ${SumrainInterval}`);
-
-           // console.log(SumrainInterval);
-            //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
-            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
-
-            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} getArea() = ${countpump}` );
-            SumrainInterval=0;
-
-            valvestatus = false;
-            
-            
-        //countday = 0;
-        }
-        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(3)},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
+    updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
  
-        maxTemp = 0;
-        minTemp = 100000;
-        rainDay = 0;
+      maxTemp = 0;
+      minTemp = 100000;
+      rainDay = 0;
 }
 
 function Calculate_round_2() {

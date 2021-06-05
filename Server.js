@@ -228,22 +228,17 @@ app.get("/Showsetting",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
 
-                if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-        //        if( Time.getMinutes()% 1 === 0 && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
+                // if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
+                if( Time.getMinutes()% 1 === 0 && Time.getSeconds()%10 === 0 ){
 
-                        if(Calculate.getRound_status() == false){
-                                Calculate.Calculate_round_1()
-                                console.log("Calculate.Calculate_round_1()");
-                        }
-                        else{
-                                Calculate.Calculate_round_2()
-                                console.log("Calculate.Calculate_round_2()");
-                        }
-                        
+                     
+                         Calculate.Calculate_round_1()
+                   
+                        console.log("Check");
                        // console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
                 }
 
-               console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
+                console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
 },1000)
 
 
