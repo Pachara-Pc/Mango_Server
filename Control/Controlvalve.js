@@ -9,10 +9,10 @@ var timeReset = [];
 var start =0;
 var Valve =1;
 var Notify = false
-var CheckDayonValue = false;
+
 
 function queueValve(countDown){
-    CheckDayonValue = true
+    Calculate.setCheckDayonValue(true)
     timeStop = [];
     let Time = new Date();
     let H = Time.getHours() ;
@@ -43,7 +43,7 @@ function queueValve(countDown){
      if(i===4){
          timeStop.push(`${H}:${Math.floor(M)}:${40}`);
          timeReset.push(`${H}:${Math.floor(M)}:${50}`);
-      
+        console.log(Calculate.getCheckDayonValue());
        console.log(timeStart);
        console.log(timeStop);
        console.log(timeReset);
@@ -130,8 +130,15 @@ setInterval(() => {
       }
       }
 
-      if(Time.getMinutes()% 10 === 0 && Time.getSeconds()%30 === 0 && CheckDayonValue === true){
-        Calculate.getZone()===1? Calculate.setZone(2): Calculate.setZone(1)
+      if(Time.getMinutes()% 10 === 0 && Time.getSeconds()%30 === 0 && Calculate.getCheckDayonValue() === true){
+       if( Calculate.getZone()===1){
+        Calculate.setZone(2) 
+        Calculate.setCheckDayonValue(false)
+       }else{
+        Calculate.setZone(1)
+        Calculate.setCheckDayonValue(false)
+       }
+     
        
       }
      

@@ -35,7 +35,7 @@ var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 
 var ET_Day_Sum = 0 ;
 var rainDay_Sum = 0 ;
-
+var CheckDayonValue = false;
 /////////////
 
 const updateRainday = (Rain)=>{
@@ -235,7 +235,13 @@ function setdayCountinValve(set){
 function getRound_status(){
     return Round_status;
 }
+function getCheckDayonValue(){
+    return CheckDayonValue
+}
 
+function setCheckDayonValue(set){
+  CheckDayonValue = set
+}
 function setRound_status(set){
     Round_status = set;
 }
@@ -243,11 +249,13 @@ function setRound_status(set){
 
 
 module.exports={
+
     findMax_Min,Calculate_round_1,
     getIrrigation,getvalvestatus,getcountpump,minusIrrigation,
     setIrrigation,setSumrainInterval,setdayCountinValve,
     pluscountpump,getpump,getRound_status,setRound_status,setcountpump,setcount,
     setcountday,setvalvestatus,setZone,getZone,
     getcountzone,plusZone,setcountzone,getdueDate,setdueDate,
-    Timeopenvalve,updateRainday,showRain
+    Timeopenvalve,updateRainday,showRain,
+    getCheckDayonValue,setCheckDayonValue
 }

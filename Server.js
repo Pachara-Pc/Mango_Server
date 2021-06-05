@@ -178,7 +178,8 @@ app.get("/getRealtime",(req,res)=>{
 
 app.get("/ShowdueDate",(req,res)=>{
         
-        res.send("not watering")
+       Calculate.getCheckDayonValue() === false? res.send("not watered"):res.send(" watered")
+               
         // res.send(Calculate.getdueDate())
 })
 
