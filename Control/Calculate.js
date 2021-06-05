@@ -81,7 +81,6 @@ function Calculate_round_1() {
     // console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
     ET_Day_Sum += parseFloat(ET_Day.toFixed(2)) 
     rainDay_Sum += parseFloat(rainDay.toFixed(2))
-    countday+=1
     Irrigation = (ET_Day_Sum - rainDay_Sum ).toFixed(2)
     
     updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
@@ -89,6 +88,7 @@ function Calculate_round_1() {
       maxTemp = 0;
       minTemp = 100000;
       rainDay = 0;
+
 }
 
 function Calculate_round_2() {
@@ -100,7 +100,7 @@ function Calculate_round_2() {
     count++;
     countday++;
     console.log(rainInterval);
-    
+
     if(dayCountinValve[0] ==1){
         dueDate = calculateDate(getdayConfig());
     }
