@@ -130,7 +130,7 @@ setInterval(() => {
       }
       }
 
-      if(Time.getMinutes()% 2 === 0 && Time.getSeconds()%30 === 0 && CheckDayonValue === true){
+      if(Time.getMinutes()% 15 === 0 && Time.getSeconds()%30 === 0 && CheckDayonValue === true){
         Calculate.getZone()===1? Calculate.setZone(2): Calculate.setZone(1)
        
       }
