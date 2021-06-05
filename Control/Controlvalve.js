@@ -9,6 +9,7 @@ var timeReset = [];
 var start =0;
 var Valve =1;
 var Notify = false
+
 function queueValve(countDown){
     timeStop = [];
     let Time = new Date();
@@ -41,9 +42,9 @@ function queueValve(countDown){
          timeStop.push(`${H}:${Math.floor(M)}:${40}`);
          timeReset.push(`${H}:${Math.floor(M)}:${50}`);
       
-      // console.log(timeStart);
-      // console.log(timeStop);
-      // console.log(timeReset);
+       console.log(timeStart);
+       console.log(timeStop);
+       console.log(timeReset);
 
        }
        
