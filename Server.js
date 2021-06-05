@@ -34,25 +34,6 @@ app.get("/", (req,res) =>{
 })
 
 
-app.get("/resetIrrigation/",(req,res)=>{
-
-    Calculate.setdayCountinValve(Calculate.getcountpump());
-    Calculate.pluscountpump(1);
-    Calculate.setIrrigation(0)
-    if(Calculate.getcountpump() == Calculate.getpump()){
-
-        Calculate.setcountpump(0);
-        Calculate.setcountday(0);
-        Calculate.setcount(0);
-        Calculate.setRound_status(true);
-        Calculate.setdueDate("");
-        console.log(`Clear Round `);
-    }
-  
-    console.log(`reseted  Irrigation  = 0`);
-    res.send(`reseted  Irrigation  = 0`);
-})
-
 app.get("/sendData/:value",(req,res)=>{
 
         const allData = req.params.value;
@@ -197,7 +178,8 @@ app.get("/getRealtime",(req,res)=>{
 
 app.get("/ShowdueDate",(req,res)=>{
         
-        res.send(Calculate.getdueDate())
+        res.send("วันนี้คุณรดน้ำไปแล้ว")
+        // res.send(Calculate.getdueDate())
 })
 
 app.get("/ControlServer=:status",(req,res)=>{

@@ -9,8 +9,9 @@ var timeReset = [];
 var start =0;
 var Valve =1;
 var Notify = false
-
+var CheckDayonValue = false;
 function queueValve(countDown){
+    CheckDayonValue = true
     timeStop = [];
     let Time = new Date();
     let H = Time.getHours() ;

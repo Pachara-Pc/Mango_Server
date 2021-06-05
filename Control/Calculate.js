@@ -100,6 +100,7 @@ function Calculate_round_2() {
     count++;
     countday++;
     console.log(rainInterval);
+    
     if(dayCountinValve[0] ==1){
         dueDate = calculateDate(getdayConfig());
     }
