@@ -106,7 +106,7 @@ setInterval(() => {
 
       
         console.log("update Zone reset IR");
-        Calculate.setdayCountinValve(Calculate.getcountpump());
+        // Calculate.setdayCountinValve(Calculate.getcountpump());
         // Calculate.pluscountpump(1);
         Calculate.setIrrigation(0)
         timeStop = [];
@@ -131,10 +131,14 @@ setInterval(() => {
       }
 
       if(Time.getMinutes()% 6 === 0 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true){
-       if( Calculate.getZone()===1){
+        console.log(" Change valve when valve opened ");
+        if( Calculate.getZone()===1){
+        
+        Calculate.setZone_Irrigation(Calculate.getZone(),Calculate.getZone_Irrigation(Calculate.getZone()))
         Calculate.setZone(2) 
         Calculate.setCheckDayonValue(false)
        }else{
+        Calculate.setZone_Irrigation(Calculate.getZone(),Calculate.getZone_Irrigation(Calculate.getZone()))
         Calculate.setZone(1)
         Calculate.setCheckDayonValue(false)
        }

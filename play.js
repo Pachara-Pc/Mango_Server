@@ -1,13 +1,7 @@
+let x = []
 
-setInterval(()=>{
-  let time = new Date()
+x[3] = 20
+x[0] = 10
 
-  if(time.getSeconds() === 26){
-    console.log(true);
-    console.log(time.getSeconds());
-  }else{
-    console.log(false);
-    console.log(time.getSeconds());
-  }
 
-},1000)
+console.log(x);

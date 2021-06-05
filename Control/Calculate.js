@@ -36,6 +36,7 @@ var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 var ET_Day_Sum = 0 ;
 var rainDay_Sum = 0 ;
 var CheckDayonValue = false;
+var Zone_Irrigation = []
 /////////////
 
 const updateRainday = (Rain)=>{
@@ -60,18 +61,23 @@ const findMax_Min = (Temp)=>{
 function Calculate_round_1() {
   maxTemp = 35
   minTemp = 30
-  rainDay = 0.3
+  rainDay = 2
 
   const Time = new Date();
 
-    ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
+    ET_Day = P[Time.getMonth()-1] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()-1] ;
     // console.log(P[Time.getMonth()]);
     // console.log(Kc[Time.getMonth()]);
     // console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
+    
     ET_Day_Sum += parseFloat(ET_Day.toFixed(2)) 
     rainDay_Sum += parseFloat(rainDay.toFixed(2))
     Irrigation = (ET_Day_Sum - rainDay_Sum ).toFixed(2)
-    
+
+    Zone_Irrigation[Zone-1] += Irrigation
+
+    console.log(Zone_Irrigation[Zone-1]);
+
     updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
  
       maxTemp = 0;
@@ -246,7 +252,12 @@ function setRound_status(set){
     Round_status = set;
 }
 
-
+function getZone_Irrigation(index){
+  return Zone_Irrigation[index]
+}
+function setZone_Irrigation(index,value){
+  Zone_Irrigation[index] -= value
+}
 
 module.exports={
 
@@ -257,5 +268,6 @@ module.exports={
     setcountday,setvalvestatus,setZone,getZone,
     getcountzone,plusZone,setcountzone,getdueDate,setdueDate,
     Timeopenvalve,updateRainday,showRain,
-    getCheckDayonValue,setCheckDayonValue
+    getCheckDayonValue,setCheckDayonValue,
+    getZone_Irrigation,setZone_Irrigation
 }

@@ -58,7 +58,7 @@ app.get("/CheckZone",(req,res)=>{
 
 app.get("/CheckIrrigation/",(req,res)=>{
 
-        res.send(`${Calculate.getIrrigation()}`);
+        res.send(`${Calculate.getZone_Irrigation(Calculate.getZone())}`);
 })
 
 
@@ -104,6 +104,7 @@ app.get("/getTimeonValve/:Time",(req,res)=>{
         queueValve(parseInt(Minute));
         setStart(1);
         setPump(1);
+        
         console.log(Minute);
         res.send("")
         
