@@ -115,6 +115,8 @@ setInterval(() => {
     
     Notify = true;
     setTimeout(()=>{Notify = false},40000)
+    
+    
 
     if(Calculate.getcountpump() == Calculate.getpump()){
         console.log("rest All ");
@@ -128,6 +130,10 @@ setInterval(() => {
       }
       }
 
+      if(Time.getMinutes()% 2 === 0 && Time.getSeconds()%30 === 0 && CheckDayonValue === true){
+         Calculate.pluscountpump(1);
+          
+      }
      
 
       
