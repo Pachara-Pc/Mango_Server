@@ -53,11 +53,6 @@ app.get("/resetIrrigation/",(req,res)=>{
     res.send(`reseted  Irrigation  = 0`);
 })
 
-app.get("/",(req,res)=>{
-
-})
-
-
 app.get("/sendData/:value",(req,res)=>{
 
         const allData = req.params.value;
@@ -229,7 +224,7 @@ setInterval(()=>{
         const Time = new Date();
 
                 // if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-                if( Time.getMinutes()% 1 === 0 && Time.getSeconds()%10 === 0 ){
+                if( Time.getMinutes()% 1 === 0 && Time.getSeconds()%30 === 0 ){
 
                      
                          Calculate.Calculate_round_1()
