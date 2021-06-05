@@ -178,7 +178,7 @@ app.get("/getRealtime",(req,res)=>{
 
 app.get("/ShowdueDate",(req,res)=>{
         
-        res.send("To day watered")
+        res.send("not watering")
         // res.send(Calculate.getdueDate())
 })
 
