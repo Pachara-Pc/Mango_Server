@@ -105,7 +105,7 @@ setInterval(() => {
       
         console.log("update Zone reset IR");
         Calculate.setdayCountinValve(Calculate.getcountpump());
-        Calculate.pluscountpump(1);
+        // Calculate.pluscountpump(1);
         Calculate.setIrrigation(0)
         timeStop = [];
         timeStart = []
