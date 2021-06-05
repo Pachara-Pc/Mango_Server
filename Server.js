@@ -58,7 +58,7 @@ app.get("/CheckZone",(req,res)=>{
 
 app.get("/CheckIrrigation/",(req,res)=>{
 
-        res.send(`${Calculate.getZone_Irrigation(Calculate.getZone())}`);
+        res.send(`${Calculate.getZone_Irrigation(Calculate.getZone()-1)}`);
 })
 
 
