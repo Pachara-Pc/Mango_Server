@@ -131,8 +131,8 @@ setInterval(() => {
       }
 
       if(Time.getMinutes()% 2 === 0 && Time.getSeconds()%30 === 0 && CheckDayonValue === true){
-         Calculate.pluscountpump(1);
-          
+        Calculate.getZone()===1? Calculate.setZone(2): Calculate.setZone(1)
+       
       }
      
 

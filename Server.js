@@ -53,7 +53,7 @@ app.get("/sendData/:value",(req,res)=>{
 
 app.get("/CheckZone",(req,res)=>{
    
-    res.send(`${Calculate.getcountpump()}`)
+    res.send(`${Calculate.getZone()}`)
 })
 
 app.get("/CheckIrrigation/",(req,res)=>{

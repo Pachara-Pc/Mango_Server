@@ -31,17 +31,6 @@ var dueDate = "";  //บอกวันที่จะจ่ายน้ำล�
 var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 
 
-// setInterval(()=>{
-//   console.log(`
-//   in  Calculate file
-//   getdayConfig() = ${getdayConfig()}
-//   pump = ${getTotalpump()}
-//   getArea() = ${getArea()}
-//   getpumpRate() = ${getpumpRate()}
-//  `);
-// },1000);
-
-
 // new variable
 
 var ET_Day_Sum = 0 ;
@@ -91,69 +80,6 @@ function Calculate_round_1() {
 
 }
 
-function Calculate_round_2() {
-  const Time = new Date();
-    ET_Day = P[Time.getMonth()] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()] ;
-    console.log(ET_Day);
-    etInterval[count] = ET_Day.toFixed(2)
-    rainInterval[count] = rainDay
-    count++;
-    countday++;
-    console.log(rainInterval);
-
-    if(dayCountinValve[0] ==1){
-        dueDate = calculateDate(getdayConfig());
-    }
-
-    for(let i =0;i<getTotalpump();i++){
-        dayCountinValve[i] +=1;
-      }
-
-      console.log(`dayCountinValve : ${dayCountinValve[0]}`);
-      console.log(`dayCountinValve : ${dayCountinValve[1]}`);
-      console.log(`dayCountinValve : ${dayCountinValve[2]}`);
-      console.log(`dayCountinValve : ${dayCountinValve[3]}`);
-
-      for(let i=0;i<count;i++){
-
-        Sum +=etInterval[i];
-        SumetInterval = Sum;
-      }
-      Sum = 0;
-      Apx = ((SumetInterval/count)*(getdayConfig()+countpump));
-      console.log(`CountDay = ${countday}`);
-      if((getdayConfig() == dayCountinValve[0])||(getdayConfig() == dayCountinValve[1])||(getdayConfig() == dayCountinValve[2])||(getdayConfig() == dayCountinValve[3])){
-
-        console.log(etInterval);
-
-        ///หาค่าความต้องการน้ำของพืช ตามวันที่วาล์วต้องจ่ายน้ำ
-          for(let i=0;i<getdayConfig();i++){
-              Irrigation+=parseFloat(etInterval[i]);
-            }
-      
-         //หาค่าน้ำฝน ตามวันที่วาล์วต้องจ่ายน้ำ
-          for(let i=0;i<getdayConfig();i++){
-              SumrainInterval+=parseFloat(rainInterval[i]);
-            }
-            console.log(SumrainInterval);
-            //นำค่าน้ำฝนมาลบกับค่าความต้องน้ำของพืชและคุณด้วยพื้นที่ไร่
-            Irrigation =  (( Irrigation - SumrainInterval)).toFixed(2);
-
-            console.log(`Irrigation = ${Irrigation} SumrainInterval = ${SumrainInterval} getArea() = ${countpump}` );
-
-            //console.log(Irrigation);
-            //ส่งสถานะไปให้วาล์วปล่อยน้ำ
-            SumrainInterval=0;
-            valvestatus = false;
-          // Control_V.setsend(true);
-        //countday = 0;
-        }
-        
-        updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(3)},${etInterval},${rainDay},${rainInterval},${Irrigation}`)
-        maxTemp = 0;
-        minTemp = 100000;
-        rainDay = 0;
-}
 
 function Timeopenvalve(){
         let H = Math.floor(((Irrigation*getArea())/getpumpRate())/60)
@@ -317,7 +243,7 @@ function setRound_status(set){
 
 
 module.exports={
-    findMax_Min,Calculate_round_1,Calculate_round_2,
+    findMax_Min,Calculate_round_1,
     getIrrigation,getvalvestatus,getcountpump,minusIrrigation,
     setIrrigation,setSumrainInterval,setdayCountinValve,
     pluscountpump,getpump,getRound_status,setRound_status,setcountpump,setcount,
