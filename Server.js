@@ -177,7 +177,7 @@ app.get("/getRealtime",(req,res)=>{
 
 
 app.get("/ShowdueDate",(req,res)=>{
-        
+
        Calculate.getCheckDayonValue() === false? res.send("not watered"):res.send(" watered")
                
         // res.send(Calculate.getdueDate())
@@ -207,7 +207,7 @@ setInterval(()=>{
         const Time = new Date();
 
                 // if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-                if( Time.getMinutes()% 10 === 0 && Time.getSeconds()%30 === 0 ){
+                if( Time.getMinutes()% 7 === 0 && Time.getSeconds()%30 === 0 ){
 
                      
                          Calculate.Calculate_round_1()
