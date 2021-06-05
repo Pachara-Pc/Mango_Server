@@ -210,7 +210,7 @@ setInterval(()=>{
                 if( Time.getMinutes()% 7 === 0 & Time.getSeconds() === 0 ){
 
                      
-                        //  Calculate.Calculate_round_1()
+                          Calculate.Calculate_round_1()
                    
                         console.log("Check");
                        // console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
