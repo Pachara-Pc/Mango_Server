@@ -130,7 +130,7 @@ setInterval(() => {
       }
       }
 
-      if(Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true){
+      if(Time.getMinutes()%10 === 0 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true){
         console.log(" Change valve when valve opened ");
         if( Calculate.getZone()===1){
         console.log("Reset get next Zone 2");
