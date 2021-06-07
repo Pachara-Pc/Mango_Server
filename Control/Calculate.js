@@ -159,7 +159,7 @@ function calculateDate(inputDay){
 
 function showRain(){
     
-    return Zone_rainDay_Sum[Zone-1]
+    return Zone_Rain_Sum[Zone-1]
   }
 
 function setcountzone (set){
@@ -262,8 +262,8 @@ function setZone_Irrigation(index,value){
   Zone_Irrigation[index] -= value
 }
 
-function getZone_rainDay_Sum(index){
-  return Zone_rainDay_Sum[index]
+function getZone_Rain_Sum(index){
+  return Zone_Rain_Sum[index]
 }
 
 module.exports={
@@ -277,5 +277,5 @@ module.exports={
     Timeopenvalve,updateRainday,showRain,
     getCheckDayonValue,setCheckDayonValue,
     getZone_Irrigation,setZone_Irrigation,
-    getZone_rainDay_Sum
+    getZone_Rain_Sum
 }
