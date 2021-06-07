@@ -134,11 +134,11 @@ setInterval(() => {
         console.log(" Change valve when valve opened ");
         if( Calculate.getZone()===1){
         console.log("Reset get next Zone 2");
-        setValuetoZero(Calculate.getZone())
+        setValuetoZero(Calculate.getZone()-1)
         Calculate.setZone(2) 
        }else{
         console.log("Reset get next Zone 1");
-        setValuetoZero(Calculate.getZone())
+        setValuetoZero(Calculate.getZone()-1)
         Calculate.setZone(1)
        
        }
