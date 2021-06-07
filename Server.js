@@ -33,7 +33,6 @@ app.get("/", (req,res) =>{
             res.send('hello server  ')
 })
 
-
 app.get("/sendData/:value",(req,res)=>{
 
         const allData = req.params.value;
@@ -44,7 +43,7 @@ app.get("/sendData/:value",(req,res)=>{
         Calculate.updateRainday(parseFloat(dataArray[1]))
         console.log(`Temp = ${ dataArray} `);
         console.log(`Temp [0] = ${ dataArray[0]} `);
-        res.send(`Updated`);             
+        res.send(`Updated`);
 }else{
         console.log(`Wait Watering Data = ${ dataArray} `);
         res.send(`Wait Watering`); 

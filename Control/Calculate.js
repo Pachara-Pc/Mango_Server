@@ -78,12 +78,13 @@ function Calculate_round_1() {
       Zone_Irrigation[i] += parseFloat(Irrigation)
       Zone_Rain_Sum[i] += parseFloat(rainDay)
       Zone_ET_Day_Sum[i] += parseFloat(ET_Day)
+      
     }
-    
+
     console.log(Zone_Irrigation);
     console.log(Zone_Rain_Sum);
     console.log(Zone_ET_Day_Sum);
-    
+
     // updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
  
       maxTemp = 0;
