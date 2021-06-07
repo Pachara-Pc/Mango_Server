@@ -180,11 +180,11 @@ app.get("/getRealtime",(req,res)=>{
 app.get("/ShowdueDate",(req,res)=>{
 
         if(Calculate.getCheckDayonValue() === "watered"){
-                res.send("watered")
+                res.send("Watered")
         }else if(Calculate.getCheckDayonValue() === "not waterd"){
-                res.send("not waterd")
+                res.send("Not waterd")
         }else{
-                res.send("watering")
+                res.send("Watering")
         }
        
                
@@ -215,7 +215,7 @@ setInterval(()=>{
         const Time = new Date();
 
                 // if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-                if(Time.getMinutes()%2 ===0 && Time.getSeconds()  == 0 ){
+                if(Time.getMinutes()%10 === 0 && Time.getSeconds()  == 0 ){
 
                      
                           Calculate.Calculate_round_1()

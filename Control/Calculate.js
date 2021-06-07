@@ -79,7 +79,7 @@ function Calculate_round_1() {
       Zone_Rain_Sum[i] += parseFloat(rainDay)
       Zone_ET_Day_Sum[i] += parseFloat(ET_Day)
     }
-
+    
     console.log(Zone_Irrigation);
     console.log(Zone_Rain_Sum);
     console.log(Zone_ET_Day_Sum);
