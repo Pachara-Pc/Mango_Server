@@ -61,7 +61,7 @@ const findMax_Min = (Temp)=>{
 function Calculate_round_1() {
   maxTemp = 35
   minTemp = 30
-  rainDay = 2
+  rainDay = 0.098
 
   const Time = new Date();
 
@@ -71,13 +71,13 @@ function Calculate_round_1() {
     // console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
     
 
-    Irrigation = (ET_Day.toFixed(2) - rainDay.toFixed(2) ).toFixed(2)
+    Irrigation = ET_Day - rainDay
     
     // เก็บค่าของโซนทั้ง 2 โซน
     for(let i =0;i<Total_Zone;i++){
-      Zone_Irrigation[i] += parseFloat(Irrigation.toFixed(2))
-      Zone_Rain_Sum[i] += parseFloat(rainDay.toFixed(2))
-      Zone_ET_Day_Sum[i] += parseFloat(ET_Day.toFixed(2))
+      Zone_Irrigation[i] += parseFloat(Irrigation)
+      Zone_Rain_Sum[i] += parseFloat(rainDay)
+      Zone_ET_Day_Sum[i] += parseFloat(ET_Day)
     }
 
     console.log(Zone_Irrigation);
