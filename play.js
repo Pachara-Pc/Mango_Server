@@ -1,7 +1,7 @@
-let x = []
+let x = "wait"
 
-x[3] = 20
-x[0] = 10
+console.log( x);
 
+x = true
 
 console.log(x);

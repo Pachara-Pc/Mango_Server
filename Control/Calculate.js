@@ -32,12 +32,11 @@ var Kc = [1.6,1.52,1.32,1.35,1.34,2.35,2.32,3.13,2.78,2.75,2.54,1.63];
 
 
 // new variable
-
-var ET_Day_Sum = 0 ;
-var rainDay_Sum = 0 ;
+var Total_Zone = 2
 var CheckDayonValue = false;
 var Zone_Irrigation = [0,0]
-var Zone_rainDay_Sum = [0,0]
+var Zone_Rain_Sum = [0,0]
+var Zone_ET_Day_Sum = [0,0]
 /////////////
 
 const updateRainday = (Rain)=>{
@@ -71,15 +70,20 @@ function Calculate_round_1() {
     // console.log(Kc[Time.getMonth()]);
     // console.log(`ET = ${ET_Day.toFixed(2)}  maxTemp = ${maxTemp} minTemp =${minTemp}`) ;
     
-    ET_Day_Sum += parseFloat(ET_Day.toFixed(2)) 
-    rainDay_Sum += parseFloat(rainDay.toFixed(2))
-    Irrigation = (ET_Day_Sum - rainDay_Sum ).toFixed(2)
 
-    Zone_Irrigation[Zone-1] += Irrigation
-    Zone_rainDay_Sum[Zone-1] += rainDay_Sum
+    Irrigation = (ET_Day.toFixed(2) - rainDay.toFixed(2) ).toFixed(2)
+    
+    // เก็บค่าของโซนทั้ง 2 โซน
+    for(let i =0;i<Total_Zone;i++){
+      Zone_Irrigation[i] += Irrigation
+      Zone_Rain_Sum[i] += rainDay.toFixed(2)
+      Zone_ET_Day_Sum[i] += ET_Day.toFixed(2)
+    }
 
-    console.log(Zone_Irrigation[Zone-1]);
-
+    console.log(Zone_Irrigation);
+    console.log(Zone_Rain_Sum);
+    console.log(Zone_ET_Day_Sum);
+    
     updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
  
       maxTemp = 0;
@@ -90,8 +94,8 @@ function Calculate_round_1() {
 
 
 function Timeopenvalve(){
-        let H = Math.floor(((Irrigation*getArea())/getpumpRate())/60)
-        let M = Math.floor(((Irrigation*getArea())/getpumpRate())-(60*H))
+        let H = Math.floor(((Zone_Irrigation[Zone-1]*getArea())/getpumpRate())/60)
+        let M = Math.floor(((Zone_Irrigation[Zone-1]*getArea())/getpumpRate())-(60*H))
         return `${H>=10?H:"0"+H}:${M>=10?M:"0"+M}`
 }
 
@@ -155,7 +159,7 @@ function calculateDate(inputDay){
 
 function showRain(){
     
-    return rainDay_Sum
+    return Zone_rainDay_Sum[Zone-1]
   }
 
 function setcountzone (set){
