@@ -75,7 +75,7 @@ function Calculate_round_1() {
     
     // เก็บค่าของโซนทั้ง 2 โซน
     for(let i =0;i<Total_Zone;i++){
-      Zone_Irrigation[i] += parseFloat(Irrigation)
+      Zone_Irrigation[i] += parseFloat(Irrigation.toFixed(2))
       Zone_Rain_Sum[i] += parseFloat(rainDay.toFixed(2))
       Zone_ET_Day_Sum[i] += parseFloat(ET_Day.toFixed(2))
     }
@@ -258,13 +258,29 @@ function setRound_status(set){
 function getZone_Irrigation(index){
   return Zone_Irrigation[index]
 }
-function setZone_Irrigation(index,value){
-  Zone_Irrigation[index] -= value
+
+function setZone_Irrigation(index){
+  Zone_Irrigation[index] = 0
 }
 
+
 function getZone_Rain_Sum(index){
-  return Zone_Rain_Sum[index]
+  return Zone_Rain_Sum[index] 
 }
+
+function setZone_Rain_Sum(index){
+   Zone_Rain_Sum[index] = 0
+}
+
+function getZone_ET_Day_Sum(index){
+  return Zone_ET_Day_Sum[index]
+}
+
+
+function SetZone_ET_Day_Sum(index){
+  Zone_ET_Day_Sum[index] = 0
+}
+
 
 module.exports={
 
@@ -277,5 +293,6 @@ module.exports={
     Timeopenvalve,updateRainday,showRain,
     getCheckDayonValue,setCheckDayonValue,
     getZone_Irrigation,setZone_Irrigation,
-    getZone_Rain_Sum
+    getZone_Rain_Sum,setZone_Rain_Sum,
+    getZone_ET_Day_Sum,SetZone_ET_Day_Sum
 }

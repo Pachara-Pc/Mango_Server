@@ -108,11 +108,11 @@ setInterval(() => {
 
       
         console.log("update Zone reset IR");
-        // Calculate.setdayCountinValve(Calculate.getcountpump());
-        // Calculate.pluscountpump(1);
+     
+        
         Calculate.setCheckDayonValue(true)
-        Calculate.setIrrigation(0)
-        timeStop = [];
+       
+        timeStop = []
         timeStart = []
         timeReset = []
     
@@ -128,22 +128,22 @@ setInterval(() => {
         Calculate.setcount(0);
         Calculate.setRound_status(true);
         Calculate.setdueDate("");
-
         console.log(`Clear Round `);
       }
       }
 
-      if(Time.getMinutes()% 6 === 0 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true){
+      if(Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true){
         console.log(" Change valve when valve opened ");
         if( Calculate.getZone()===1){
         
-        Calculate.setZone_Irrigation(Calculate.getZone(),Calculate.getZone_Irrigation(Calculate.getZone()))
+        setValuetoZero(Calculate.getZone())
         Calculate.setZone(2) 
-        Calculate.setCheckDayonValue(false)
+       
        }else{
-        Calculate.setZone_Irrigation(Calculate.getZone(),Calculate.getZone_Irrigation(Calculate.getZone()))
+         
+        setValuetoZero(Calculate.getZone())
         Calculate.setZone(1)
-        Calculate.setCheckDayonValue(false)
+       
        }
      
        
@@ -153,6 +153,12 @@ setInterval(() => {
       
 }, 500);
 
+function setValuetoZero( Zone ){
+  Calculate.setZone_Irrigation(Zone)
+  Calculate.setZone_Rain_Sum(Zone)
+  Calculate.SetZone_ET_Day_Sum(Zone)
+  Calculate.setCheckDayonValue(false)
+}
 
 function getValveNumber(i){
     return ValveNumber[i];
