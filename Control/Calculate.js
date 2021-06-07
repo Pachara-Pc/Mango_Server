@@ -75,16 +75,16 @@ function Calculate_round_1() {
     
     // เก็บค่าของโซนทั้ง 2 โซน
     for(let i =0;i<Total_Zone;i++){
-      Zone_Irrigation[i] += Irrigation
-      Zone_Rain_Sum[i] += rainDay.toFixed(2)
-      Zone_ET_Day_Sum[i] += ET_Day.toFixed(2)
+      Zone_Irrigation[i] += parseFloat(Irrigation)
+      Zone_Rain_Sum[i] += parseFloat(rainDay.toFixed(2))
+      Zone_ET_Day_Sum[i] += parseFloat(ET_Day.toFixed(2))
     }
 
     console.log(Zone_Irrigation);
     console.log(Zone_Rain_Sum);
     console.log(Zone_ET_Day_Sum);
     
-    updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
+    // updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
  
       maxTemp = 0;
       minTemp = 100000;

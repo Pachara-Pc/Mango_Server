@@ -208,7 +208,7 @@ setInterval(()=>{
         const Time = new Date();
 
                 // if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-                if( Time.getMinutes()% 6 == 0 && Time.getSeconds() == 0 ){
+                if( Time.getSeconds() % 10 == 0 ){
 
                      
                           Calculate.Calculate_round_1()

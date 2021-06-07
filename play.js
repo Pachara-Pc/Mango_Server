@@ -1,7 +1,3 @@
-let x = "wait"
+let Zone_Irrigation = [0,0]
 
-console.log( x);
-
-x = true
-
-console.log(x);
+console.log(Zone_Irrigation);
