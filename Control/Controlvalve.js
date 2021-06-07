@@ -76,8 +76,6 @@ setInterval(() => {
         }
 
 
-       
-
       //console.log(`pump ON = ${pump}`);
         //ปิดปั้มน้ำ
         if(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()}` === `${timeStop[4]}`){
@@ -135,12 +133,11 @@ setInterval(() => {
       if(Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true){
         console.log(" Change valve when valve opened ");
         if( Calculate.getZone()===1){
-        
+        console.log("Reset get next Zone 2");
         setValuetoZero(Calculate.getZone())
         Calculate.setZone(2) 
-       
        }else{
-         
+        console.log("Reset get next Zone 1");
         setValuetoZero(Calculate.getZone())
         Calculate.setZone(1)
        
