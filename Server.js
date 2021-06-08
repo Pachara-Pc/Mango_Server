@@ -38,17 +38,13 @@ app.get("/sendData/:value",(req,res)=>{
 
         const allData = req.params.value;
         const dataArray = allData.split(",");
-        if(Calculate.getIrrigation() <= 0){
    
         Calculate.findMax_Min(parseInt(dataArray[0]))
         Calculate.updateRainday(parseFloat(dataArray[1]))
         console.log(`Temp = ${ dataArray} `);
         console.log(`Temp [0] = ${ dataArray[0]} `);
         res.send(`Updated`);
-}else{
-        console.log(`Wait Watering Data = ${ dataArray} `);
-        res.send(`Wait Watering`); 
-}
+
 })
 
 app.get("/CheckZone",(req,res)=>{

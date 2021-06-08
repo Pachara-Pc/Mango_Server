@@ -59,7 +59,9 @@ const findMax_Min = (Temp)=>{
 }
 
 function Calculate_round_1() {
-
+  maxTemp =35
+  minTemp =30
+  rainDay =2 
   const Time = new Date();
 
     ET_Day = P[Time.getMonth()-1] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()-1] ;
@@ -85,11 +87,11 @@ function Calculate_round_1() {
     for(let i =0 ;i<Total_Zone;i++){
       const listData = {
         Number : `${i+1}`,
-        Ir : `${Zone_Irrigation[i]}`,
-        Rain_Day:`${rainDay}`,
-        Rain_sum: `${Zone_Rain_Sum[i] }`,
-        ET_Day:`${ET_Day}`,
-        ET_sum: `${Zone_ET_Day_Sum[i]}`
+        Ir : `${Zone_Irrigation[i].toFixed(2)}`,
+        Rain_Day:`${rainDay.toFixed(2)}`,
+        Rain_sum: `${Zone_Rain_Sum[i].toFixed(2) }`,
+        ET_Day:`${ET_Day.toFixed(2)}`,
+        ET_sum: `${Zone_ET_Day_Sum[i].toFixed(2)}`
       }
       updateLog_Zone(listData)
     }
