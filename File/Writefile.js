@@ -16,7 +16,7 @@ const Behavior = (data) =>{
 function updateLog_Zone(zone){
     const date = new Date()
     const Time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()+543},${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`
-    const Log = `${Time},${zone.Number},${ET_Day},${ET_sum},${Rain_Day},${Rain_Day},${Ir}\r\n`
+    const Log = `${Time},${zone.Number},${zone.ET_Day},${zone.ET_sum},${zone.Rain_Day},${zone.Rain_Day},${zone.Ir}\r\n`
 
     fs.appendFile(`./Zone_${zone.Number}`, Log , function (err) {
         if (err) throw err;
