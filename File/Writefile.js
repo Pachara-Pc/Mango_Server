@@ -30,7 +30,7 @@ function updateLog_Zone(zone){
 function writeLog(Data){
     console.log('writeLog');
     console.log(Data);
-    fs.appendFile('./File/Behavior.csv'.Behavior(Data)+"\r\n",function (err) {
+    fs.appendFile('./File/Behavior.csv',Behavior(Data)+"\r\n",function (err) {
         if (err) throw err;
         console.log('Updated! writeLog');
       });
