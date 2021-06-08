@@ -65,7 +65,7 @@ function getTimehour(){
     return Hour
 }
 
-function getTimeninute(){
+function getTimeminute(){
     return Minute
 }
 
@@ -75,7 +75,7 @@ function getTimesecond(){
 
 module.exports = {
     getdayConfig,getTotalpump,getArea,getpumpRate,  
-    getTimehour,getTimeninute,getTimesecond,setTime,
+    getTimehour,getTimeminute,getTimesecond,setTime,
     setpumpRate,setArea,setTotalPump,setdayConfig,show_seting
 
 }

@@ -1,5 +1,5 @@
 const {getdayConfig,getArea,getpumpRate,getTotalpump} = require("../Setting/config")
-const {updatefile} = require("./Writefile")
+const {updateLog_Zone} = require("../File/Writefile")
 var maxTemp = 0;            // อุณหภูมิสูงสุด
 var minTemp = 1000;         // อุญหภูมิต่ำสุด
 var DAP = 0;        
@@ -59,9 +59,6 @@ const findMax_Min = (Temp)=>{
 }
 
 function Calculate_round_1() {
-  maxTemp = 35
-  minTemp = 30
-  rainDay = 0.098
 
   const Time = new Date();
 
@@ -81,12 +78,23 @@ function Calculate_round_1() {
       
     }
 
-    console.log(Zone_Irrigation);
-    console.log(Zone_Rain_Sum);
-    console.log(Zone_ET_Day_Sum);
+    // console.log(Zone_Irrigation);
+    // console.log(Zone_Rain_Sum);
+    // console.log(Zone_ET_Day_Sum);
 
-    // updatefile(`${Time.getDate()}/${Time.getMonth()}/${Time.getFullYear()},${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()},${maxTemp},${minTemp},${ET_Day.toFixed(2)},${ET_Day_Sum},${rainDay},${rainDay_Sum},${Irrigation}`)
- 
+    for(let i =0 ;i<Total_Zone;i++){
+      const listData = {
+        Number : `${i+1}`,
+        Ir : `${Zone_Irrigation[i]}`,
+        Rain_Day:`${rainDay}`,
+        Rain_sum: `${Zone_Rain_Sum[i] }`,
+        ET_Day:`${ET_Day}`,
+        ET_sum: `${Zone_ET_Day_Sum[i]}`
+      }
+      updateLog_Zone(listData)
+    }
+    
+
       maxTemp = 0;
       minTemp = 100000;
       rainDay = 0;
@@ -100,62 +108,7 @@ function Timeopenvalve(){
         return `${H>=10?H:"0"+H}:${M>=10?M:"0"+M}`
 }
 
-function calculateDate(inputDay){
 
-    let due = new Date();
-
-    let D = due.getDate(), M = due.getMonth()+1, Y = due.getFullYear();
-
-    if (M == 1 || M == 3 || M == 5 || M == 7 || M == 8 || M == 10 || M == 12) {
-  
-      D = inputDay + D;
-      if (D > 31) {
-        D -= 31;
-  
-        M++;
-      }
-    }
-    else if (M == 2) {
-      if ((Y % 4 == 0 && Y % 100 != 0) || (Y % 400 == 0))
-      {
-        D = inputDay + D;
-        if (D > 29) {
-          D -= 29;
-  
-          M++;
-        }
-      }
-  
-      else
-      {
-        D = inputDay + D;
-        if (D > 28) {
-          D -= 28;
-  
-          M++;
-        }
-      }
-    }
-  
-  
-    else {
-      D = inputDay + D;
-      if (D > 30) {
-        D -= 30;
-  
-        M++;
-      }
-    }
-
-    if(D == due.getDate()&& M == due.getMonth()+1 && Y == due.getFullYear()){
-      return (``)
-    }else{
-      
-      return (`${D<10?"0"+D:D}/${M<10?"0"+M:M}/${Y}`)
-    }
-    
-    
-  }
 
 
 function showRain(){

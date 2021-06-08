@@ -6,7 +6,8 @@ const router = express.Router();
 const PORT = process.env.PORT || 8000
 const Calculate = require("./Control/Calculate");
 const {queueValve,getValveNumber,setStart,getPump,setPump,checkNotify} = require("./Control/Controlvalve")
-const {show_seting,setdayConfig, setTotalPump,setpumpRate,setArea,setTime,getTimehour,getTimeninute,getTimesecond} = require("./Setting/config")
+const {show_seting,setdayConfig, setTotalPump,setpumpRate,setArea,setTime,getTimehour,getTimeminute,getTimesecond} = require("./Setting/config")
+const {writeLog} = require("./File/Writefile")
 var StatusServer = false;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
@@ -58,6 +59,7 @@ app.get("/CheckZone",(req,res)=>{
 app.get("/CheckIrrigation/",(req,res)=>{
 
         res.send(`${Calculate.getZone_Irrigation(Calculate.getZone()-1)}`);
+        
 })
 
 
@@ -78,6 +80,7 @@ app.get("/Setting/dayConfig=:dayConfig&Pump=:pump&pumpRate=:pRate&Area=:area&Tim
         
         fs.writeFile('./Setting/Config.txt',setting,()=>{
                
+
                 console.log("Write file update");
                 
         });
@@ -99,7 +102,7 @@ app.get("/Setting/dayConfig=:dayConfig&Pump=:pump&pumpRate=:pRate&Area=:area&Tim
 
 app.get("/getTimeonValve/:Time",(req,res)=>{
         const  Minute =  req.params.Time;
-       // if(Minute<4){}
+        writeLog(Minute)
         queueValve(parseInt(Minute));
         setStart(1);
         setPump(1);
@@ -214,7 +217,7 @@ setInterval(()=>{
         const Time = new Date();
 
                 // if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds() === getTimesecond() && Calculate.getIrrigation() === 0 &&  StatusServer === true){
-                if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeninute() && Time.getSeconds()  === getTimesecond()  ){
+                if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeminute() && Time.getSeconds()  === getTimesecond()  ){
 
                      
                           Calculate.Calculate_round_1()
