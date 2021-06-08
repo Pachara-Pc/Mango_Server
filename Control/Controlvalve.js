@@ -130,7 +130,7 @@ setInterval(() => {
     }
   }
 
-  if (Time.getHours() === 0 && Time.getMinutes() == 0 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === true) {
+  if (Time.getHours() === 0 && Time.getMinutes() == 0 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === "watered") {
     console.log(" Change valve when valve opened ");
 
     Calculate.getZone() === 1 ? Calculate.setZone(2) : Calculate.setZone(1)
