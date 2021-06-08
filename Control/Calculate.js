@@ -59,9 +59,9 @@ const findMax_Min = (Temp)=>{
 }
 
 function Calculate_round_1() {
-  maxTemp =35
-  minTemp =30
-  rainDay =2 
+//   maxTemp =35
+//   minTemp =30
+//   rainDay =2 
   const Time = new Date();
 
     ET_Day = P[Time.getMonth()-1] * ((0.46 * (( maxTemp + minTemp) / 2)) + 8) * Kc[Time.getMonth()-1] ;
