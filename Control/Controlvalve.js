@@ -129,7 +129,7 @@ setInterval(() => {
     }
   }
 //Time.getHours() === 0 &&
-  if ( Time.getMinutes() == 16 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === "watered") {
+  if ( Time.getMinutes() == 30 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === "watered") {
     
     Calculate.setCheckDayonValue("notwatered")
     Calculate.getZone() === 1 ? Calculate.setZone(2) : Calculate.setZone(1)
