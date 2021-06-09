@@ -224,7 +224,7 @@ setInterval(()=>{
                         console.log("Check");
                        // console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
                 }
-
+                console.log(Calculate.getCheckDayonValue());
                 console.log(`${Time.getHours()}:${Time.getMinutes()}:${Time.getSeconds()} `);
 },1000)
 
