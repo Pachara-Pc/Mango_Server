@@ -27,10 +27,10 @@ function updateLog_Zone(zone){
 }
 
 //บันทึกข้อมูลผู้ใช้งาน เวลาในการจ่ายน้ำ
-function writeLog(Data){
+function writeLog(Data,Zone){
     console.log('writeLog');
     console.log(Data);
-    fs.appendFile('./File/Behavior.csv',Behavior(Data)+"\r\n",function (err) {
+    fs.appendFile('./File/Behavior.csv',Behavior(Data,Zone)+"\r\n",function (err) {
         if (err) throw err;
         console.log('Updated! writeLog');
       });
