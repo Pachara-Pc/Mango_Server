@@ -13,7 +13,7 @@ var Notify = false
 
 function queueValve(countDown) {
 
-  Calculate.setCheckDayonValue("Watering")
+  Calculate.setCheckDayonValue("watering")
 
   timeStop = [];
   let Time = new Date();
@@ -106,9 +106,8 @@ setInterval(() => {
 
 
     console.log("update Zone reset IR");
-
     setValuetoZero(Calculate.getZone() - 1)
-    Calculate.setCheckDayonValue("watered")
+    
 
     timeStop = []
     timeStart = []
@@ -131,12 +130,9 @@ setInterval(() => {
   }
 
   if (Time.getHours() === 0 && Time.getMinutes() == 0 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === "watered") {
-    console.log(" Change valve when valve opened ");
-
+    
+    Calculate.setCheckDayonValue("notwatered")
     Calculate.getZone() === 1 ? Calculate.setZone(2) : Calculate.setZone(1)
-
-
-
 
   }
 
@@ -145,10 +141,11 @@ setInterval(() => {
 }, 500);
 
 function setValuetoZero(Zone) {
+  
   Calculate.setZone_Irrigation(Zone)
   Calculate.setZone_Rain_Sum(Zone)
   Calculate.SetZone_ET_Day_Sum(Zone)
-  Calculate.setCheckDayonValue("not waterd")
+  Calculate.setCheckDayonValue("watered")
 }
 
 function getValveNumber(i) {

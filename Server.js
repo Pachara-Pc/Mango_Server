@@ -95,7 +95,7 @@ app.get("/Setting/dayConfig=:dayConfig&Pump=:pump&pumpRate=:pRate&Area=:area&Tim
 
      
 })
-
+/// ส่งเวลาเข้ามาคำนวณ
 app.get("/getTimeonValve/:Time",(req,res)=>{
         const  Minute =  req.params.Time;
         writeLog(Minute)
@@ -107,6 +107,22 @@ app.get("/getTimeonValve/:Time",(req,res)=>{
         res.send("")
         
  })
+
+///// แสดงสถานะของวาล์ว
+ app.get("/ShowdueDate",(req,res)=>{
+
+        if(Calculate.getCheckDayonValue() === "watered"){
+                res.send("Watered")
+        }else if(Calculate.getCheckDayonValue() === "notwaterd"){
+                res.send("Not waterd")
+        }else{
+                Calculate.setCheckDayonValue("watering")
+                res.send("Watering")
+        }
+       
+               
+        // res.send(Calculate.getdueDate())
+})
 
  app.get("/:test&:test1",(req,res)=>{
         const  Minute =  req.params.test;
@@ -173,21 +189,6 @@ app.get("/getRealtime",(req,res)=>{
        // console.log(`${Time.getHours()>10?Time.getHours():"0"+Time.getHours()}:${Time.getMinutes()>10?Time.getMinutes():"0"+Time.getMinutes()}:${Time.getSeconds()>10?Time.getSeconds():"0"+Time.getSeconds()}`);
  })
 
-
-
-app.get("/ShowdueDate",(req,res)=>{
-
-        if(Calculate.getCheckDayonValue() === "watered"){
-                res.send("Watered")
-        }else if(Calculate.getCheckDayonValue() === "not waterd"){
-                res.send("Not waterd")
-        }else{
-                res.send("Watering")
-        }
-       
-               
-        // res.send(Calculate.getdueDate())
-})
 
 app.get("/ControlServer=:status",(req,res)=>{
         const  status =  req.params.status;
