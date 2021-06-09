@@ -96,6 +96,7 @@ function Calculate_round_1() {
       updateLog_Zone(listData)
     }
     
+    console.log(Zone_Irrigation);
 
       maxTemp = 0;
       minTemp = 100000;
