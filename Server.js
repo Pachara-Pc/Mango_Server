@@ -114,7 +114,7 @@ app.get("/getTimeonValve/:Time",(req,res)=>{
         if(Calculate.getCheckDayonValue() === "watered"){
                 res.send(" Watered")
         }else if(Calculate.getCheckDayonValue() === "notwatered"){
-                res.send(" Not waterd")
+                res.send(" Not watered")
         }else if(Calculate.getCheckDayonValue() === "watering"){
                 // Calculate.setCheckDayonValue("watering")
                 res.send(" Watering")
