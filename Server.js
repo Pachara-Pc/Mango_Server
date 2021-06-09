@@ -98,7 +98,7 @@ app.get("/Setting/dayConfig=:dayConfig&Pump=:pump&pumpRate=:pRate&Area=:area&Tim
 /// ส่งเวลาเข้ามาคำนวณ
 app.get("/getTimeonValve/:Time",(req,res)=>{
         const  Minute =  req.params.Time;
-        writeLog(Minute)
+        writeLog(Minute,Calculate.getZone()-1)
         queueValve(parseInt(Minute));
         setStart(1);
         setPump(1);

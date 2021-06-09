@@ -5,10 +5,10 @@ function padZero(input){
     return  input.toString().padStart(2,'0')
 }
 
-const Behavior = (data) =>{
+const Behavior = (data,zone) =>{
     const date = new Date()
     const Time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()+543},${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`
-    const Behavior = `${Time},${data}`
+    const Behavior = `${Time},${data},${zone}`
     return  Behavior
 }
 

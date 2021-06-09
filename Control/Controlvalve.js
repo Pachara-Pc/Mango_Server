@@ -129,8 +129,9 @@ setInterval(() => {
     }
   }
 //Time.getHours() === 0 &&
-  if ( Time.getMinutes() == 30 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === "watered") {
+  if ( Time.getMinutes() == 40 && Time.getSeconds() === 0 && Calculate.getCheckDayonValue() === "watered") {
     
+    console.log("Cheage Zone  reset status to not watered");
     Calculate.setCheckDayonValue("notwatered")
     Calculate.getZone() === 1 ? Calculate.setZone(2) : Calculate.setZone(1)
 
