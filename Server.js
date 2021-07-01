@@ -215,7 +215,7 @@ app.get("/Showsetting",(req,res)=>{
 setInterval(()=>{ 
         const Time = new Date();
 
-                //  if(Time.getSeconds()=== 0){
+                //   if(Time.getMinutes()%5 === 0 &&Time.getSeconds()=== 0){
                 if(Time.getHours() === getTimehour() && Time.getMinutes() === getTimeminute() && Time.getSeconds()  === getTimesecond()  ){
 
                      

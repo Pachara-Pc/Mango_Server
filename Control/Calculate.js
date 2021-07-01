@@ -37,11 +37,36 @@ var CheckDayonValue = "notwatered";
 var Zone_Irrigation = [0,0]
 var Zone_Rain_Sum = [0,0]
 var Zone_ET_Day_Sum = [0,0]
-/////////////
+
+//////////////
+for(let x =1 ;x<=2;x++){
+    const Backup = require(`../File/Backup_Zone_${x}.json`)
+        Zone = Backup.currnet
+        maxTemp = Backup.Max_Temp
+        minTemp = Backup.Min_Temp
+        rainDay = Backup.Rain_Day
+        ET_Day = Backup.ET_Day
+        rainDay = Backup.Rain_Day
+        Zone_Irrigation[x-1] = Backup.Irrigation
+        Zone_Rain_Sum[x-1] = Backup.Rain_Sum
+        Zone_ET_Day_Sum[x-1] = Backup.ET_Sum
+        // console.log(Backup.Rain_sum);
+        console.log(`start server Zone ${x} print init value current = ${Zone} max = ${maxTemp} min = ${minTemp} etsum = ${Zone_ET_Day_Sum[x-1]} ir = ${Zone_Irrigation[x-1]} rainsum = ${Zone_Rain_Sum[x-1]} `);
+  
+}
+
+    //  console.log(`start server Zone 1 print init value current = ${Zone} max = ${maxTemp} min = ${minTemp} etsum = ${Zone_ET_Day_Sum[0]} ir = ${Zone_Irrigation[0]} rainsum = ${Zone_Rain_Sum[0]} `);
+    // console.log(`start server Zone 2 print init value current = ${Zone}  max = ${maxTemp} min = ${minTemp} etsum = ${Zone_ET_Day_Sum[1]} ir = ${Zone_Irrigation[1]} rainsum = ${Zone_Rain_Sum[1]}`);
+
 
 const updateRainday = (Rain)=>{
   console.log(`Rain : ${Rain} `);
+  if(Rain<= 10){
     rainDay+=parseFloat(Rain);
+
+  }
+
+    
     console.log(`rainDay : ${rainDay} `);
 }
 const dateOnvalve =(Day)=>{
@@ -57,6 +82,8 @@ const findMax_Min = (Temp)=>{
         minTemp = parseFloat(Temp)
     }
 }
+
+
 
 function Calculate_round_1() {
 //   maxTemp =35
@@ -86,6 +113,7 @@ function Calculate_round_1() {
 
     for(let i =0 ;i<Total_Zone;i++){
       const listData = {
+        currnet:`${Zone}`,
         Number : `${i+1}`,
         Max: `${maxTemp}`,
         Min: `${minTemp}`,
