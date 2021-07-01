@@ -7,7 +7,7 @@ function padZero(input){
 
 const Behavior = (data,zone) =>{
     const date = new Date()
-    const Time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()+543},${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`
+    const Time = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()+543},${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`
     const Behavior = `${Time},${data},${zone}`
     return  Behavior
 }
@@ -15,7 +15,7 @@ const Behavior = (data,zone) =>{
 // บันทึกข้อมูลของแต่ละโซน  && เขียนไฟล์ Backup
 function updateLog_Zone(zone){
     const date = new Date()
-    const Time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()+543},${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`
+    const Time = `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()+543},${padZero(date.getHours())}:${padZero(date.getMinutes())}:${padZero(date.getSeconds())}`
     const Log = `${Time},${zone.Number},${zone.Max},${zone.Min},${zone.ET_Day},${zone.ET_sum},${zone.Rain_Day},${zone.Rain_sum},${zone.Ir}\r\n`
     
 
