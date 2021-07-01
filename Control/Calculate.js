@@ -41,7 +41,7 @@ var Zone_ET_Day_Sum = [0,0]
 
 const updateRainday = (Rain)=>{
   console.log(`Rain : ${Rain} `);
-    rainDay+=Rain;
+    rainDay+=parseFloat(Rain);
     console.log(`rainDay : ${rainDay} `);
 }
 const dateOnvalve =(Day)=>{
@@ -50,11 +50,11 @@ const dateOnvalve =(Day)=>{
 }
 const findMax_Min = (Temp)=>{
     if(Temp>maxTemp && Temp<70){
-        maxTemp =Temp
+        maxTemp =parseFloat(Temp)
     }
 
     if(Temp<minTemp && Temp >5){
-        minTemp = Temp
+        minTemp = parseFloat(Temp)
     }
 }
 
@@ -87,6 +87,8 @@ function Calculate_round_1() {
     for(let i =0 ;i<Total_Zone;i++){
       const listData = {
         Number : `${i+1}`,
+        Max: `${maxTemp}`,
+        Min: `${minTemp}`,
         Ir : `${Zone_Irrigation[i].toFixed(2)}`,
         Rain_Day:`${rainDay.toFixed(2)}`,
         Rain_sum: `${Zone_Rain_Sum[i].toFixed(2) }`,
