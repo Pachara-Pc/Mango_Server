@@ -33,7 +33,7 @@ function updateLog_Zone(zone){
     }
      
     const data = JSON.stringify(Backup);
-    fs.writeFile(`./File/Backup_Zone_${zone.Number}.json`, data, (err) => {
+    fs.writeFile(`root/Mango_Server/File/Backup_Zone_${zone.Number}.json`, data, (err) => {
         if (err) {
             throw err;
         }
@@ -43,7 +43,7 @@ function updateLog_Zone(zone){
     /// Datalog
     console.log('updateLog_Zone');
     console.log(Log);
-    fs.appendFile(`./File/Zone_${zone.Number}.csv`, Log , function (err) {
+    fs.appendFile(`root/Mango_Server/File/Zone_${zone.Number}.csv`, Log , function (err) {
         if (err) throw err;
         console.log('Updated! updateLog_Zone');
       });
@@ -56,7 +56,7 @@ function updateLog_Zone(zone){
 function writeLog(Data,Zone){
     console.log('writeLog');
     console.log(Data);
-    fs.appendFile('./File/Behavior.csv',Behavior(Data,Zone)+"\r\n",function (err) {
+    fs.appendFile('root/Mango_Server/File/Behavior.csv',Behavior(Data,Zone)+"\r\n",function (err) {
         if (err) throw err;
         console.log('Updated! writeLog');
       });
