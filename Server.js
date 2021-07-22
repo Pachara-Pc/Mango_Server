@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 
 try{
-	        const data = fs.readFileSync('./Setting/Config.txt','utf8')
+	        const data = fs.readFileSync('/root/Mango_Server/Setting/Config.txt','utf8')
 
 	                        let text = data.split(',');
 	                        setdayConfig( parseInt(text[0]))
